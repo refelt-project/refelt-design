@@ -2,10 +2,17 @@
   export let value = "";
   export let placeholder = "";
   export let type = "text";
+  export let id = "";
+  export let label = "";
 </script>
+
+{#if label}
+  <label for={id} class="input-label">{label}</label>
+{/if}
 
 {#if type === "email"}
   <input
+    {id}
     class="input"
     type="email"
     {placeholder}
@@ -16,6 +23,7 @@
   />
 {:else if type === "password"}
   <input
+    {id}
     class="input"
     type="password"
     {placeholder}
@@ -26,6 +34,7 @@
   />
 {:else}
   <input
+    {id}
     class="input"
     type="text"
     {placeholder}
@@ -37,6 +46,14 @@
 {/if}
 
 <style>
+  .input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
   .input {
     width: 100%;
     padding: 12px;

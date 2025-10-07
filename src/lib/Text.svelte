@@ -39,17 +39,35 @@
     margin: 0;
     padding: 0;
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    
+    /* PREMIUM SYSTEM FONT STACK */
+    font-family: 
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    
+    /* CRYSTAL CLEAR RENDERING */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
+    
+    /* ADVANCED TYPOGRAPHY */
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     font-optical-sizing: auto;
   }
 
   .text-heading {
     color: var(--text);
+    /* Better number rendering in headings */
+    font-variant-numeric: lining-nums;
   }
 
   .text-body {
@@ -57,24 +75,30 @@
     letter-spacing: 0;
     line-height: 1.6;
     color: var(--text);
+    /* Proportional numbers look better in body text */
+    font-variant-numeric: proportional-nums;
   }
 
-  /* Specific heading styles */
+  /* Specific heading styles - SUPER sharp and modern */
   h1.text-heading {
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1.1;
+    /* Tighter tracking for large text */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
   }
 
   h2.text-heading {
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.15;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 
   h3.text-heading {
     font-weight: 600;
     letter-spacing: -0.03em;
     line-height: 1.2;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 </style>

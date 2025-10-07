@@ -1,12 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Native Svelte UI Kit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <title>Choosewise - Interactive Film Builder | Native Svelte UI Kit</title>
+    <meta name="description" content="Twórz interaktywne filmy z Choosewise. Zaawansowany system designu z React Flow dla interaktywnych narracji. Szybki, dostępny i łatwy w użyciu." />
+    <meta name="keywords" content="interactive film, film builder, choosewise, react flow, svelte ui kit" />
+    <meta name="author" content="Choosewise" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Choosewise - Interactive Film Builder" />
+    <meta property="og:description" content="Twórz interaktywne filmy z Choosewise. Zaawansowany system designu dla interaktywnych narracji." />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Choosewise - Interactive Film Builder" />
+    <meta name="twitter:description" content="Twórz interaktywne filmy z Choosewise. Zaawansowany system designu dla interaktywnych narracji." />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#000000" />
+    
+    <!-- Critical CSS - Inline dla szybkiego renderowania -->
+    <style>
+      :root {
+        --bg: #000000;
+        --bg-elevated: #0a0a0a;
+        --bg-card: #141414;
+        --border: #262626;
+        --border-strong: #404040;
+        --text: #fafafa;
+        --text-muted: #a0a0a0;
+        --text-subtle: #5a5a5a;
+        --accent: #ffffff;
+        --accent-fg: #000000;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #app {
+        min-height: 100vh;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>

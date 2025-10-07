@@ -1,17 +1,20 @@
-/* Global Native UI Styles */
+/* Global Native UI Styles - PREMIUM SYSTEM FONTS */
+/* Critical CSS (variables, reset, body) jest w index.html inline */
 
 :root {
-  --bg: #000000;
-  --bg-elevated: #0a0a0a;
-  --bg-card: #141414;
-  --border: #262626;
-  --border-strong: #404040;
-  --text: #fafafa;
-  --text-muted: #a0a0a0;
-  --text-subtle: #5a5a5a;
-  --accent: #ffffff;
-  --accent-fg: #000000;
   --grid: 8px;
+  
+  /* Status/Semantic Colors */
+  --status-success: #86efac;
+  --status-success-bg: #166534;
+  --status-warning: #fde047;
+  --status-warning-bg: #713f12;
+  --status-error: #fca5a5;
+  --status-error-bg: #7f1d1d;
+  --status-info: #93c5fd;
+  --status-info-bg: #1e3a8a;
+  --status-pending: #fde047;
+  --status-pending-bg: #713f12;
 }
 
 [data-theme="light"] {
@@ -25,24 +28,48 @@
   --text-subtle: #a0a0a0;
   --accent: #000000;
   --accent-fg: #ffffff;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  
+  /* Status/Semantic Colors - Light Theme */
+  --status-success: #166534;
+  --status-success-bg: #dcfce7;
+  --status-warning: #713f12;
+  --status-warning-bg: #fef9c3;
+  --status-error: #991b1b;
+  --status-error-bg: #fee2e2;
+  --status-info: #1e40af;
+  --status-info-bg: #dbeafe;
+  --status-pending: #713f12;
+  --status-pending-bg: #fef9c3;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  /* ADVANCED TYPOGRAPHY FEATURES */
+  font-feature-settings: 
+    "kern" 1,        /* Kerning for better spacing */
+    "liga" 1,        /* Standard ligatures */
+    "calt" 1,        /* Contextual alternates */
+    "cv01" 1,        /* Character variants */
+    "cv02" 1,        /* Character variants */
+    "cv03" 1,        /* Character variants */
+    "cv04" 1,        /* Character variants */
+    "zero" 1,        /* Slashed zero */
+    "ss01" 1,        /* Stylistic set 1 */
+    "ss02" 1;        /* Stylistic set 2 */
+  
+  /* Optical sizing for variable fonts */
   font-optical-sizing: auto;
+  
+  /* Better number rendering */
+  font-variant-numeric: proportional-nums;
+  
   transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimize font loading performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

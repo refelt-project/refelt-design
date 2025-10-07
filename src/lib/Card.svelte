@@ -1,11 +1,13 @@
 <script>
+  // variant: "default" | "transparent"
   // border: "none" | "subtle" | "strong"
   // padding: "sm" | "md" | "lg"
+  export let variant = "default";
   export let border = "subtle";
   export let padding = "md";
 </script>
 
-<div class="card border-{border} padding-{padding}">
+<div class="card variant-{variant} border-{border} padding-{padding}">
   {#if $$slots.header}
     <div class="card-header">
       <slot name="header" />
@@ -25,11 +27,20 @@
 
 <style>
   .card {
-    background: var(--bg-card);
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* Variants */
+  .variant-default {
+    background: var(--bg-card);
+  }
+
+  .variant-transparent {
+    background: transparent;
+  }
+
+  /* Borders */
   .border-none {
     border: none;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08);
@@ -45,6 +56,16 @@
     box-shadow: none;
   }
 
+  /* Transparent variant - no shadow */
+  .variant-transparent.border-none {
+    box-shadow: none;
+  }
+
+  .variant-transparent.border-subtle {
+    box-shadow: none;
+  }
+
+  /* Padding */
   .padding-sm {
     padding: 16px;
   }
@@ -68,4 +89,4 @@
   .card-body {
     /* Main content area */
   }
-</style>
+</style>  

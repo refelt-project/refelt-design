@@ -3,11 +3,15 @@
     Text,
     Button,
     Card,
+    Badge,
     Input,
     Container,
     Stack,
     Grid
   } from '../lib';
+  
+  // Import only the icons we need
+  import { Sparkles, DollarSign, Users } from 'lucide-svelte';
 
   let email = '';
   let password = '';
@@ -28,8 +32,8 @@
   const payments = [
     { status: 'success', email: 'ken99@example.com', amount: '$316.00' },
     { status: 'success', email: 'Abe45@example.com', amount: '$242.00' },
-    { status: 'processing', email: 'Monserrat44@example.com', amount: '$837.00' },
-    { status: 'failed', email: 'carmella@example.com', amount: '$721.00' },
+    { status: 'info', email: 'Monserrat44@example.com', amount: '$837.00' },
+    { status: 'error', email: 'carmella@example.com', amount: '$721.00' },
     { status: 'pending', email: 'jason78@example.com', amount: '$450.00' }
   ];
   
@@ -48,14 +52,12 @@
 </script>
 
 <Container>
-  <Stack direction="vertical" gap="xl">
+  <Stack gap="xl">
     
     <!-- Hero Section -->
-    <Stack direction="vertical" gap="lg">
-      <div class="badge">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
-        </svg>
+    <Stack gap="lg">
+      <div class="badge-hero">
+        <Sparkles size={14} />
         New Components Available
       </div>
       
@@ -63,54 +65,46 @@
         Rich Components<br>Showcase
       </Text>
       
-      <Text as="p" size="lg">
+      <Text size="lg">
         Explore advanced component compositions built with our base system. From calendars to data tables, chat interfaces to progress trackers.
       </Text>
     </Stack>
 
     <!-- Rich Components Grid -->
-    <Grid columns="auto-fit" minColumnWidth="340px" gap="lg">
+    <Grid>
       
       <!-- Dashboard Card 1 -->
-      <Card border="subtle" padding="md">
+      <Card>
         <Stack direction="horizontal" gap="md" style="justify-content: space-between; align-items: flex-start;">
-          <Stack direction="vertical" gap="sm">
-            <Text as="p" size="xs">TOTAL REVENUE</Text>
-            <Text as="p" size="xl">$15,231.89</Text>
-            <Text as="p" size="sm">+20.1% from last month</Text>
+          <Stack gap="sm">
+            <Text size="xs">TOTAL REVENUE</Text>
+            <Text size="xl">$15,231.89</Text>
+            <Text size="sm">+20.1% from last month</Text>
           </Stack>
           <div class="icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" x2="12" y1="2" y2="22"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
+            <DollarSign size={20} />
           </div>
         </Stack>
       </Card>
 
       <!-- Dashboard Card 2 -->
-      <Card border="subtle" padding="md">
+      <Card>
         <Stack direction="horizontal" gap="md" style="justify-content: space-between; align-items: flex-start;">
-          <Stack direction="vertical" gap="sm">
-            <Text as="p" size="xs">SUBSCRIPTIONS</Text>
-            <Text as="p" size="xl">+2,350</Text>
-            <Text as="p" size="sm">+180.1% from last month</Text>
+          <Stack gap="sm">
+            <Text size="xs">SUBSCRIPTIONS</Text>
+            <Text size="xl">+2,350</Text>
+            <Text size="sm">+180.1% from last month</Text>
           </Stack>
           <div class="icon-wrapper">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
+            <Users size={20} />
           </div>
         </Stack>
       </Card>
 
       <!-- Calendar Card -->
-      <Card border="subtle" padding="md">
+      <Card>
         <div slot="header">
-          <Text as="p" size="xs">OCTOBER 2025</Text>
+          <Text size="xs">OCTOBER 2025</Text>
         </div>
         <div class="calendar">
           {#each calendarDays as day}
@@ -123,12 +117,12 @@
       </Card>
 
       <!-- Move Goal Card -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">MOVE GOAL</Text>
-          <Text as="p" size="md">Set your daily activity goal.</Text>
-          <Text as="p" size="xl">350</Text>
-          <Text as="p" size="sm">Calories/day</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">MOVE GOAL</Text>
+          <Text>Set your daily activity goal.</Text>
+          <Text size="xl">350</Text>
+          <Text size="sm">Calories/day</Text>
           <div class="progress-bar">
             <div class="progress-fill" style="width: 70%;"></div>
           </div>
@@ -136,10 +130,10 @@
       </Card>
 
       <!-- Exercise Minutes Card -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">EXERCISE MINUTES</Text>
-          <Text as="p" size="md">Your exercise minutes are ahead of where you normally are.</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">EXERCISE MINUTES</Text>
+          <Text>Your exercise minutes are ahead of where you normally are.</Text>
           <div class="progress-bar">
             <div class="progress-fill" style="width: 85%;"></div>
           </div>
@@ -147,18 +141,18 @@
       </Card>
 
       <!-- Team Members Card -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">TEAM MEMBERS</Text>
-          <Text as="p" size="md">Invite your team members to collaborate.</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">TEAM MEMBERS</Text>
+          <Text>Invite your team members to collaborate.</Text>
           
-          <Stack direction="vertical" gap="sm">
+          <Stack gap="sm">
             {#each teamMembers as member}
               <div class="user-item">
                 <div class="avatar">{member.avatar}</div>
-                <Stack direction="vertical" gap="sm">
-                  <Text as="p" size="md">{member.name}</Text>
-                  <Text as="p" size="sm">{member.email}</Text>
+                <Stack gap="sm">
+                  <Text>{member.name}</Text>
+                  <Text size="sm">{member.email}</Text>
                 </Stack>
               </div>
             {/each}
@@ -167,30 +161,30 @@
       </Card>
 
       <!-- Payments Table Card -->
-      <Card border="subtle" padding="md" style="grid-column: span 2;">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">PAYMENTS</Text>
-          <Text as="p" size="md">Manage your payments.</Text>
+      <Card style="grid-column: span 2;">
+        <Stack gap="md">
+          <Text size="xs">PAYMENTS</Text>
+          <Text>Manage your payments.</Text>
           
           <div class="table-wrapper">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th><Text as="p" size="sm">Status</Text></th>
-                  <th><Text as="p" size="sm">Email</Text></th>
-                  <th><Text as="p" size="sm">Amount</Text></th>
+                  <th><Text size="sm">Status</Text></th>
+                  <th><Text size="sm">Email</Text></th>
+                  <th><Text size="sm">Amount</Text></th>
                 </tr>
               </thead>
               <tbody>
                 {#each payments as payment}
                   <tr>
                     <td>
-                      <span class="status status-{payment.status}">
+                      <Badge variant={payment.status}>
                         {payment.status.charAt(0).toUpperCase() + payment.status.slice(1)}
-                      </span>
+                      </Badge>
                     </td>
-                    <td><Text as="p" size="md">{payment.email}</Text></td>
-                    <td><Text as="p" size="md">{payment.amount}</Text></td>
+                    <td><Text>{payment.email}</Text></td>
+                    <td><Text>{payment.amount}</Text></td>
                   </tr>
                 {/each}
               </tbody>
@@ -200,24 +194,26 @@
       </Card>
 
       <!-- Create Account Form -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">CREATE AN ACCOUNT</Text>
-          <Text as="p" size="md">Enter your email below to create your account</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">CREATE AN ACCOUNT</Text>
+          <Text>Enter your email below to create your account</Text>
           
-          <Stack direction="vertical" gap="md">
-            <Stack direction="vertical" gap="sm">
-              <Text as="p" size="sm">Email</Text>
+          <Stack gap="md">
+            <Stack gap="sm">
               <Input
+                id="email-input"
+                label="Email"
                 type="email"
                 placeholder="name@example.com"
                 bind:value={email}
               />
             </Stack>
             
-            <Stack direction="vertical" gap="sm">
-              <Text as="p" size="sm">Password</Text>
+            <Stack gap="sm">
               <Input
+                id="password-input"
+                label="Password"
                 type="password"
                 placeholder="••••••••"
                 bind:value={password}
@@ -230,27 +226,27 @@
       </Card>
 
       <!-- Chat Card -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">REPORT AN ISSUE</Text>
-          <Text as="p" size="md">What area are you having problems with?</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">REPORT AN ISSUE</Text>
+          <Text>What area are you having problems with?</Text>
           
-          <Stack direction="vertical" gap="md">
+          <Stack gap="md">
             {#each messages as message}
               {#if message.type === 'agent'}
                 <div class="message">
                   <div class="avatar">{message.avatar}</div>
-                  <Stack direction="vertical" gap="sm">
-                    <Text as="p" size="sm">{message.name}</Text>
+                  <Stack gap="sm">
+                    <Text size="sm">{message.name}</Text>
                     <div class="message-content">
-                      <Text as="p" size="md">{message.text}</Text>
+                      <Text>{message.text}</Text>
                     </div>
                   </Stack>
                 </div>
               {:else}
                 <div class="message message-user">
                   <div class="message-content message-content-user">
-                    <Text as="p" size="md">{message.text}</Text>
+                    <Text>{message.text}</Text>
                   </div>
                 </div>
               {/if}
@@ -260,28 +256,54 @@
       </Card>
 
       <!-- Share Document Card -->
-      <Card border="subtle" padding="md">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">SHARE THIS DOCUMENT</Text>
-          <Text as="p" size="md">Anyone with the link can view this document.</Text>
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">SHARE THIS DOCUMENT</Text>
+          <Text>Anyone with the link can view this document.</Text>
           
           <Input
-            type="text"
+            id="share-link"
+            label="Share Link"
             bind:value={shareLink}
           />
           
-          <Text as="p" size="sm">PEOPLE WITH ACCESS</Text>
+          <Text size="sm">PEOPLE WITH ACCESS</Text>
           
-          <Stack direction="vertical" gap="sm">
+          <Stack gap="sm">
             {#each sharedUsers as user}
               <div class="user-item">
                 <div class="avatar">{user.avatar}</div>
-                <Stack direction="vertical" gap="sm">
-                  <Text as="p" size="md">{user.name}</Text>
-                  <Text as="p" size="sm">{user.email}</Text>
+                <Stack gap="sm">
+                  <Text>{user.name}</Text>
+                  <Text size="sm">{user.email}</Text>
                 </Stack>
               </div>
             {/each}
+          </Stack>
+        </Stack>
+      </Card>
+
+      <!-- Example: Transparent Card -->
+      <Card variant="transparent">
+        <Stack gap="md">
+          <Text size="xs">TRANSPARENT CARD</Text>
+          <Text>This card has a transparent background - perfect for layering!</Text>
+          <Stack direction="horizontal" gap="sm">
+            <Badge variant="success">Active</Badge>
+            <Badge variant="warning">Warning</Badge>
+            <Badge variant="error">Error</Badge>
+          </Stack>
+        </Stack>
+      </Card>
+
+      <!-- Example: Glass Card -->
+      <Card variant="glass">
+        <Stack gap="md">
+          <Text size="xs">GLASS MORPHISM</Text>
+          <Text>This card has a frosted glass effect with backdrop blur.</Text>
+          <Stack direction="horizontal" gap="sm">
+            <Button variant="outline" size="sm">Outline</Button>
+            <Button variant="ghost" size="sm">Ghost</Button>
           </Stack>
         </Stack>
       </Card>
@@ -292,7 +314,7 @@
 </Container>
 
 <style>
-  .badge {
+  .badge-hero {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -409,35 +431,6 @@
   
   .data-table tbody tr:last-child td {
     border-bottom: none;
-  }
-  
-  /* Status Badge */
-  .status {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  
-  .status-success {
-    background: #166534;
-    color: #86efac;
-  }
-  
-  .status-processing {
-    background: #1e3a8a;
-    color: #93c5fd;
-  }
-  
-  .status-failed {
-    background: #7f1d1d;
-    color: #fca5a5;
-  }
-  
-  .status-pending {
-    background: #713f12;
-    color: #fde047;
   }
   
   /* Messages */

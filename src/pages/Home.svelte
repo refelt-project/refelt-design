@@ -3,6 +3,7 @@
     Text,
     Button,
     Card,
+    Badge,
     Input,
     Container,
     Stack,
@@ -13,73 +14,103 @@
 </script>
 
 <Container>
-  <Stack direction="vertical" gap="xl">
+  <Stack gap="xl">
     
     <!-- Hero -->
-    <Stack direction="vertical" gap="lg">
+    <Stack gap="lg">
       <Text as="h1" size="xxl">
         Design Systems<br>Made Simple
       </Text>
-      <Text as="p" size="lg">
+      <Text size="lg">
         Beautifully crafted components built with precision. Accessible, customizable, and ready to use.
       </Text>
       <Stack direction="horizontal" gap="md">
         <Button>Get Started</Button>
-        <Button size="sm">Learn More</Button>
+        <Button variant="outline" size="sm">Learn More</Button>
       </Stack>
     </Stack>
 
     <!-- Cards Grid -->
-    <Grid columns="auto-fit" minColumnWidth="340px" gap="lg">
+    <Grid>
       
       <!-- Card with border -->
-      <Card border="subtle" padding="md">
+      <Card>
         <div slot="header">
-          <Text as="p" size="xs">TOTAL REVENUE</Text>
+          <Text size="xs">TOTAL REVENUE</Text>
         </div>
-        <Stack direction="vertical" gap="sm">
-          <Text as="p" size="xl">$45,231</Text>
-          <Text as="p" size="sm">+20.1% from last month</Text>
+        <Stack gap="sm">
+          <Text size="xl">$45,231</Text>
+          <Text size="sm">+20.1% from last month</Text>
+          <Badge variant="success">Active</Badge>
         </Stack>
       </Card>
 
       <!-- Card with strong border -->
-      <Card border="strong" padding="md">
+      <Card border="strong">
         <div slot="header">
-          <Text as="p" size="xs">ACTIVE USERS</Text>
+          <Text size="xs">ACTIVE USERS</Text>
         </div>
-        <Stack direction="vertical" gap="sm">
-          <Text as="p" size="xl">+2,350</Text>
-          <Text as="p" size="sm">+180.1% from last month</Text>
+        <Stack gap="sm">
+          <Text size="xl">+2,350</Text>
+          <Text size="sm">+180.1% from last month</Text>
+          <Badge variant="info">Tracking</Badge>
         </Stack>
       </Card>
 
-      <!-- Card without border -->
-      <Card border="none" padding="sm">
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="xs">CREATE ACCOUNT</Text>
+      <!-- Transparent Card -->
+      <Card variant="transparent" padding="sm">
+        <Stack gap="md">
+          <Text size="xs">TRANSPARENT DESIGN</Text>
           <Input
+            id="email-home"
+            label="Email Address"
             type="email"
             placeholder="you@example.com"
             bind:value={email}
           />
-          <Button>Sign Up</Button>
+          <Button variant="ghost">Sign Up</Button>
         </Stack>
       </Card>
 
       <!-- Card with footer -->
-      <Card border="subtle" padding="md">
+      <Card>
         <div slot="header">
-          <Text as="p" size="xs">TEAM MEMBERS</Text>
+          <Text size="xs">TEAM MEMBERS</Text>
         </div>
-        <Stack direction="vertical" gap="md">
-          <Text as="p" size="md">Sofia Davis</Text>
-          <Text as="p" size="md">Jackson Lee</Text>
-          <Text as="p" size="md">Isabella Nguyen</Text>
+        <Stack gap="md">
+          <Text>Sofia Davis</Text>
+          <Text>Jackson Lee</Text>
+          <Text>Isabella Nguyen</Text>
         </Stack>
         <div slot="footer">
-          <Button size="sm">Invite</Button>
+          <Button variant="outline" size="sm">Invite</Button>
         </div>
+      </Card>
+
+      <!-- Button Variants Demo -->
+      <Card variant="glass">
+        <Stack gap="md">
+          <Text size="xs">BUTTON VARIANTS</Text>
+          <Stack gap="sm">
+            <Button size="sm">Solid (Default)</Button>
+            <Button variant="outline" size="sm">Outline</Button>
+            <Button variant="ghost" size="sm">Ghost</Button>
+          </Stack>
+        </Stack>
+      </Card>
+
+      <!-- Badge Variants Demo -->
+      <Card>
+        <Stack gap="md">
+          <Text size="xs">STATUS BADGES</Text>
+          <Stack direction="horizontal" gap="sm" style="flex-wrap: wrap;">
+            <Badge variant="success">Success</Badge>
+            <Badge variant="warning">Warning</Badge>
+            <Badge variant="error">Error</Badge>
+            <Badge variant="info">Info</Badge>
+            <Badge variant="pending">Pending</Badge>
+          </Stack>
+        </Stack>
       </Card>
 
     </Grid>
