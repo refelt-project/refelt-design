@@ -1,21 +1,60 @@
 <script>
-  // direction: "vertical" | "horizontal"
-  // gap: "sm" | "md" | "lg" | "xl" | "xxl"
+  /**
+   * Stack Component - Vertical/Horizontal layout with controlled spacing
+   * 
+   * @typedef {"vertical" | "horizontal"} Direction
+   * @typedef {"sm" | "md" | "lg" | "xl" | "xxl"} Gap
+   * 
+   * @type {Direction}
+   */
   export let direction = "vertical";
+  
+  /**
+   * @type {Gap}
+   */
   export let gap = "md";
 
+  // ============================================
+  // TYPE SAFETY - tylko dozwolone wartości
+  // ============================================
+  const ALLOWED_DIRECTIONS = ["vertical", "horizontal"];
+  const ALLOWED_GAPS = ["sm", "md", "lg", "xl", "xxl"];
+
+  // Validation guards
+  if (!ALLOWED_DIRECTIONS.includes(direction)) {
+    console.error(`[Stack] Invalid direction: "${direction}". Allowed: ${ALLOWED_DIRECTIONS.join(", ")}`);
+    direction = "vertical"; // fallback
+  }
+
+  if (!ALLOWED_GAPS.includes(gap)) {
+    console.error(`[Stack] Invalid gap: "${gap}". Allowed: ${ALLOWED_GAPS.join(", ")}`);
+    gap = "md"; // fallback
+  }
+
+  // ============================================
+  // SPACING SYSTEM - CSS Variables ONLY
+  // ============================================
   const gapMap = {
-    sm: "8px",
-    md: "16px",
-    lg: "24px",
-    xl: "48px",
-    xxl: "64px"
+    sm: "var(--space-sm)",
+    md: "var(--space-md)",
+    lg: "var(--space-lg)",
+    xl: "var(--space-xl)",
+    xxl: "var(--space-xxl)"
   };
 
-  $: gapValue = gapMap[gap] || gap;
+  $: gapValue = gapMap[gap];
 </script>
 
-<div class="stack stack-{direction}" style="gap: {gapValue}">
+<!--
+  SECURITY: 
+  - NO style prop accepted
+  - NO $$restProps spread
+  - Only class can be added via parent
+-->
+<div 
+  class="stack stack-{direction}"
+  style="gap: {gapValue}"
+>
   <slot />
 </div>
 

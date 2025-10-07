@@ -1,92 +1,92 @@
 <script>
-  // variant: "default" | "transparent"
-  // border: "none" | "subtle" | "strong"
-  // padding: "sm" | "md" | "lg"
+  /**
+   * Card Component - shadcn/ui compatible
+   * Simplified: header, content (auto), footer slots
+   * 
+   * @typedef {"solid" | "dashed"} BorderStyle
+   * @typedef {"default" | "elevated"} Variant
+   * 
+   * @type {BorderStyle}
+   */
+  export let borderStyle = "solid";
+  
+  /**
+   * @type {Variant}
+   */
   export let variant = "default";
-  export let border = "subtle";
-  export let padding = "md";
+  
+  /**
+   * @type {string}
+   */
+  let className = "";
+  export { className as class };
+
+  // ============================================
+  // TYPE SAFETY
+  // ============================================
+  const ALLOWED_BORDER_STYLES = ["solid", "dashed"];
+  const ALLOWED_VARIANTS = ["default", "elevated"];
+
+  // Validation guards
+  if (!ALLOWED_BORDER_STYLES.includes(borderStyle)) {
+    console.error(`[Card] Invalid borderStyle: "${borderStyle}". Allowed: ${ALLOWED_BORDER_STYLES.join(", ")}`);
+    borderStyle = "solid";
+  }
+
+  if (!ALLOWED_VARIANTS.includes(variant)) {
+    console.error(`[Card] Invalid variant: "${variant}". Allowed: ${ALLOWED_VARIANTS.join(", ")}`);
+    variant = "default";
+  }
 </script>
 
-<div class="card variant-{variant} border-{border} padding-{padding}">
+<div 
+  class="card card-{variant} card-border-{borderStyle} {className}"
+>
   {#if $$slots.header}
-    <div class="card-header">
-      <slot name="header" />
-    </div>
+    <slot name="header" />
   {/if}
   
-  <div class="card-body">
+  <div class="card-content">
     <slot />
   </div>
   
   {#if $$slots.footer}
-    <div class="card-footer">
-      <slot name="footer" />
-    </div>
+    <slot name="footer" />
   {/if}
 </div>
 
 <style>
   .card {
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* shadcn/ui exact values */
+    border-radius: var(--radius-lg); /* 10px */
+    border-width: 1px;
+    border-color: var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    transition: all var(--transition-slow);
+  }
+
+  /* Border styles */
+  .card-border-solid {
+    border-style: solid;
+  }
+
+  .card-border-dashed {
+    border-style: dashed;
   }
 
   /* Variants */
-  .variant-default {
+  .card-default {
     background: var(--bg-card);
   }
 
-  .variant-transparent {
-    background: transparent;
+  .card-elevated {
+    background: var(--bg-elevated);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   }
 
-  /* Borders */
-  .border-none {
-    border: none;
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08);
+  /* Content auto-padding */
+  .card-content {
+    padding: var(--space-lg); /* 24px - shadcn/ui exact */
   }
-
-  .border-subtle {
-    border: 1px solid var(--border);
-    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  }
-
-  .border-strong {
-    border: 1px solid var(--border-strong);
-    box-shadow: none;
-  }
-
-  /* Transparent variant - no shadow */
-  .variant-transparent.border-none {
-    box-shadow: none;
-  }
-
-  .variant-transparent.border-subtle {
-    box-shadow: none;
-  }
-
-  /* Padding */
-  .padding-sm {
-    padding: 16px;
-  }
-
-  .padding-md {
-    padding: 24px;
-  }
-
-  .padding-lg {
-    padding: 32px;
-  }
-
-  .card-header {
-    margin-bottom: 16px;
-  }
-
-  .card-footer {
-    margin-top: 16px;
-  }
-
-  .card-body {
-    /* Main content area */
-  }
-</style>  
+</style>

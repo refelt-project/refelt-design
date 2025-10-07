@@ -1,35 +1,76 @@
 <script>
-  // as: "h1" | "h2" | "h3" | "p"
-  // size: "xs" | "sm" | "md" | "lg" | "xl" | "xxl"
+  /**
+   * Text Component - shadcn/ui compatible (4 sizes only)
+   *
+   * @typedef {"p" | "span"} As
+   * @typedef {"sm" | "base" | "lg" | "xl"} Size
+   *
+   * @type {As}
+   */
   export let as = "p";
-  export let size = "md";
 
+  /**
+   * @type {Size}
+   */
+  export let size = "base";
+
+  /**
+   * @type {boolean}
+   */
+  export let muted = false;
+
+  /**
+   * @type {string}
+   */
+  let className = "";
+  export { className as class };
+
+  // ============================================
+  // TYPE SAFETY
+  // ============================================
+  const ALLOWED_AS = ["p", "span"];
+  const ALLOWED_SIZES = ["sm", "base", "lg", "xl"];
+
+  // Validation guards
+  if (!ALLOWED_AS.includes(as)) {
+    console.error(
+      `[Text] Invalid as: "${as}". Allowed: ${ALLOWED_AS.join(", ")}`
+    );
+    as = "p";
+  }
+
+  if (!ALLOWED_SIZES.includes(size)) {
+    console.error(
+      `[Text] Invalid size: "${size}". Allowed: ${ALLOWED_SIZES.join(", ")}`
+    );
+    size = "base";
+  }
+
+  // ============================================
+  // shadcn/ui SIZE SYSTEM
+  // ============================================
   const sizeMap = {
-    xxl: "clamp(48px, 8vw, 96px)",
-    xl: "42px",
-    lg: "18px",
-    md: "14px",
-    sm: "13px",
-    xs: "12px"
+    sm: { fontSize: "14px", lineHeight: "21px" }, // shadcn/ui exact
+    base: { fontSize: "16px", lineHeight: "24px" }, // default
+    lg: { fontSize: "18px", lineHeight: "28px" }, // larger
+    xl: { fontSize: "20px", lineHeight: "28px" }, // heading-like
   };
 
-  $: fontSize = sizeMap[size] || sizeMap.md;
+  $: styles = sizeMap[size];
 </script>
 
-{#if as === "h1"}
-  <h1 class="text text-heading" style="font-size: {fontSize};">
+{#if as === "span"}
+  <span
+    class="text text-{size} {muted ? 'text-muted' : ''} {className}"
+    style="font-size: {styles.fontSize}; line-height: {styles.lineHeight};"
+  >
     <slot />
-  </h1>
-{:else if as === "h2"}
-  <h2 class="text text-heading" style="font-size: {fontSize};">
-    <slot />
-  </h2>
-{:else if as === "h3"}
-  <h3 class="text text-heading" style="font-size: {fontSize};">
-    <slot />
-  </h3>
+  </span>
 {:else}
-  <p class="text text-body" style="font-size: {fontSize};">
+  <p
+    class="text text-{size} {muted ? 'text-muted' : ''} {className}"
+    style="font-size: {styles.fontSize}; line-height: {styles.lineHeight};"
+  >
     <slot />
   </p>
 {/if}
@@ -39,66 +80,35 @@
     margin: 0;
     padding: 0;
     color: var(--text);
-    
+
     /* PREMIUM SYSTEM FONT STACK */
-    font-family: 
-      -apple-system,
-      BlinkMacSystemFont,
-      "Segoe UI",
-      Roboto,
-      "Helvetica Neue",
-      Arial,
-      sans-serif,
-      "Apple Color Emoji",
-      "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    
-    /* CRYSTAL CLEAR RENDERING */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    
-    /* ADVANCED TYPOGRAPHY */
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-    font-optical-sizing: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
   }
 
-  .text-heading {
-    color: var(--text);
-    /* Better number rendering in headings */
-    font-variant-numeric: lining-nums;
+  /* REMOVED properties (inherited from body):
+     - font-smoothing
+     - font-feature-settings
+     - font-synthesis
+     - text-rendering
+     - font-optical-sizing
+  */
+
+  .text-muted {
+    color: var(--text-muted);
   }
 
-  .text-body {
+  /* Size-specific tweaks */
+  .text-sm,
+  .text-base {
     font-weight: 400;
-    letter-spacing: 0;
-    line-height: 1.6;
-    color: var(--text);
-    /* Proportional numbers look better in body text */
-    font-variant-numeric: proportional-nums;
   }
 
-  /* Specific heading styles - SUPER sharp and modern */
-  h1.text-heading {
-    font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 1.1;
-    /* Tighter tracking for large text */
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1;
+  .text-lg {
+    font-weight: 500;
   }
 
-  h2.text-heading {
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.15;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-  }
-
-  h3.text-heading {
+  .text-xl {
     font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.2;
-    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
   }
 </style>

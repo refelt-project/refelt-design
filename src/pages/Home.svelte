@@ -3,6 +3,8 @@
     Text,
     Button,
     Card,
+    CardHeader,
+    CardFooter,
     Badge,
     Input,
     Container,
@@ -10,116 +12,208 @@
     Grid
   } from '../lib';
 
-  let email = '';
+  // Form state
+  let cardName = '';
+  let cardNumber = '';
+  let cvv = '';
+  let comments = '';
+  let sameAsShipping = true;
 </script>
 
 <Container>
   <Stack gap="xl">
     
-    <!-- Hero -->
-    <Stack gap="lg">
-      <Text as="h1" size="xxl">
-        Build Apps & Dashboards<br>Ridiculously Fast
-      </Text>
-      <Text size="lg">
-        Refelt to zestaw szybkich, czystych komponentów Svelte. Komponuj ekrany, skaluj system designu, dostarczaj szybciej.
-      </Text>
-      <Stack direction="horizontal" gap="md">
-        <Button>Get Started</Button>
-        <Button variant="outline" size="sm">View Components</Button>
-      </Stack>
+    <Stack gap="md">
+      <Text size="xl">Payment Form Demo</Text>
+      <Text size="base" muted>Example cards using the new Card components</Text>
     </Stack>
 
-    <!-- Cards Grid -->
-    <Grid>
+    <Grid columns={3} gap="lg" minColumnWidth="320px">
       
-      <!-- Card with border -->
-      <Card>
-        <div slot="header">
-          <Text size="xs">TOTAL REVENUE</Text>
-        </div>
-        <Stack gap="sm">
-          <Text size="xl">$45,231</Text>
-          <Text size="sm">+20.1% vs last month</Text>
-          <Badge variant="success">Active</Badge>
-        </Stack>
-      </Card>
-
-      <!-- Card with strong border -->
-      <Card border="strong">
-        <div slot="header">
-          <Text size="xs">ACTIVE USERS</Text>
-        </div>
-        <Stack gap="sm">
-          <Text size="xl">+2,350</Text>
-          <Text size="sm">+180.1% vs last month</Text>
-          <Badge variant="info">Tracking</Badge>
-        </Stack>
-      </Card>
-
-      <!-- Transparent Card -->
-      <Card variant="transparent" padding="sm">
-        <Stack gap="md">
-          <Text size="xs">EARLY ACCESS</Text>
-          <Input
-            id="email-home"
-            label="Email Address"
-            type="email"
-            placeholder="you@example.com"
-            bind:value={email}
-          />
-          <Button variant="ghost">Sign Up</Button>
-        </Stack>
-      </Card>
-
-      <!-- Card with footer -->
-      <Card>
-        <div slot="header">
-          <Text size="xs">TEAM MEMBERS</Text>
-        </div>
-        <Stack gap="md">
-          <Text>Sofia Davis</Text>
-          <Text>Jackson Lee</Text>
-          <Text>Isabella Nguyen</Text>
-        </Stack>
-        <div slot="footer">
-          <Button variant="outline" size="sm">Invite</Button>
-        </div>
-      </Card>
-
-      <!-- Button Variants Demo -->
-      <Card variant="glass">
-        <Stack gap="md">
-          <Text size="xs">BUTTON VARIANTS</Text>
-          <Stack gap="sm">
-            <Button size="sm">Solid (Default)</Button>
-            <Button variant="outline" size="sm">Outline</Button>
-            <Button variant="ghost" size="sm">Ghost</Button>
+      <!-- Payment Form Card -->
+      <Card class="span-2">
+        <form>
+          <Stack gap="lg">
+            
+            <!-- Payment Method Section -->
+            <Stack gap="lg">
+              <Stack gap="sm">
+                <Text size="lg">Payment Method</Text>
+                <Text size="sm" muted>All transactions are secure and encrypted</Text>
+              </Stack>
+              
+              <Stack gap="lg">
+                <Stack gap="sm">
+                  <label for="card-name" class="label">Name on Card</label>
+                  <Input
+                    id="card-name"
+                    placeholder="John Doe"
+                    bind:value={cardName}
+                  />
+                </Stack>
+                
+                <Grid columns={3} gap="md">
+                  <Stack gap="sm" class="span-2">
+                    <label for="card-number" class="label">Card Number</label>
+                    <Input
+                      id="card-number"
+                      placeholder="1234 5678 9012 3456"
+                      bind:value={cardNumber}
+                    />
+                    <Text size="sm" muted>Enter your 16-digit number.</Text>
+                  </Stack>
+                  
+                  <Stack gap="sm">
+                    <label for="cvv" class="label">CVV</label>
+                    <Input
+                      id="cvv"
+                      placeholder="123"
+                      bind:value={cvv}
+                    />
+                  </Stack>
+                </Grid>
+                
+                <Grid columns={2} gap="md">
+                  <Stack gap="sm">
+                    <label for="month" class="label">Month</label>
+                    <Input
+                      id="month"
+                      placeholder="MM"
+                    />
+                  </Stack>
+                  
+                  <Stack gap="sm">
+                    <label for="year" class="label">Year</label>
+                    <Input
+                      id="year"
+                      placeholder="YYYY"
+                    />
+                  </Stack>
+                </Grid>
+              </Stack>
+            </Stack>
+            
+            <!-- Separator -->
+            <div class="separator"></div>
+            
+            <!-- Billing Address Section -->
+            <Stack gap="lg">
+              <Stack gap="sm">
+                <Text size="lg">Billing Address</Text>
+                <Text size="sm" muted>The billing address associated with your payment method</Text>
+              </Stack>
+              
+              <Stack direction="horizontal" gap="sm">
+                <input 
+                  type="checkbox" 
+                  id="same-shipping"
+                  class="checkbox"
+                  bind:checked={sameAsShipping}
+                />
+                <label for="same-shipping" class="label-inline">
+                  Same as shipping address
+                </label>
+              </Stack>
+            </Stack>
+            
+            <!-- Separator -->
+            <div class="separator"></div>
+            
+            <!-- Comments Section -->
+            <Stack gap="sm">
+              <label for="comments" class="label">Comments</label>
+              <textarea
+                id="comments"
+                placeholder="Add any additional comments"
+                class="textarea"
+                bind:value={comments}
+              />
+            </Stack>
+            
+            <!-- Action Buttons - ✅ ZMIENIONO: Submit używa variant="accent" -->
+            <Stack direction="horizontal" gap="md">
+              <Button variant="accent" type="submit">Submit</Button>
+              <Button variant="outline" type="button">Cancel</Button>
+            </Stack>
+            
           </Stack>
+        </form>
+      </Card>
+
+      <!-- Empty Card 1 -->
+      <Card>
+        <Stack gap="md">
+          <Text size="base">EMPTY CARD 1</Text>
+          <Text size="sm" muted>This is a placeholder card for future content.</Text>
         </Stack>
       </Card>
 
-      <!-- Badge Variants Demo -->
+      <!-- Empty Card 2 -->
       <Card>
         <Stack gap="md">
-          <Text size="xs">STATUS BADGES</Text>
-          <Stack direction="horizontal" gap="sm" style="flex-wrap: wrap;">
-            <Badge variant="success">Success</Badge>
-            <Badge variant="warning">Warning</Badge>
-            <Badge variant="error">Error</Badge>
-            <Badge variant="info">Info</Badge>
-            <Badge variant="pending">Pending</Badge>
-          </Stack>
+          <Text size="base">EMPTY CARD 2</Text>
+          <Text size="sm" muted>Another placeholder card ready for content.</Text>
         </Stack>
       </Card>
 
     </Grid>
-
   </Stack>
 </Container>
 
 <style>
-  :global(body) {
-    padding-top: 0;
+  /* Utility */
+  :global(.span-2) { grid-column: span 2; }
+  
+  /* Form elements */
+  .label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  
+  .label-inline {
+    font-size: 14px;
+    color: var(--text);
+    cursor: pointer;
+  }
+  
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+  
+  .textarea {
+    min-height: 96px;
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: all var(--transition-base);
+  }
+  
+  .textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  
+  .textarea::placeholder {
+    color: var(--text-subtle);
+  }
+  
+  /* Separator */
+  .separator {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0;
   }
 </style>

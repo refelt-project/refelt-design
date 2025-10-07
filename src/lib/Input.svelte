@@ -1,11 +1,56 @@
 <script>
+  /**
+   * Input Component - Type-safe input field
+   * 
+   * @typedef {"text" | "email" | "password"} Type
+   * 
+   * @type {string}
+   */
   export let value = "";
+  
+  /**
+   * @type {string}
+   */
   export let placeholder = "";
+  
+  /**
+   * @type {Type}
+   */
   export let type = "text";
+  
+  /**
+   * @type {string}
+   */
   export let id = "";
+  
+  /**
+   * @type {string}
+   */
   export let label = "";
+
+  /**
+   * @type {boolean}
+   */
+  export let disabled = false;
+
+  // ============================================
+  // TYPE SAFETY - tylko dozwolone wartości
+  // ============================================
+  const ALLOWED_TYPES = ["text", "email", "password"];
+
+  // Validation guard
+  if (!ALLOWED_TYPES.includes(type)) {
+    console.error(`[Input] Invalid type: "${type}". Allowed: ${ALLOWED_TYPES.join(", ")}`);
+    type = "text"; // fallback
+  }
 </script>
 
+<!--
+  SECURITY: 
+  - NO style prop accepted
+  - NO $$restProps spread (except events)
+  - Events forwarded: input, focus, blur
+-->
 {#if label}
   <label for={id} class="input-label">{label}</label>
 {/if}
@@ -16,6 +61,7 @@
     class="input"
     type="email"
     {placeholder}
+    {disabled}
     bind:value
     on:input
     on:focus
@@ -27,6 +73,7 @@
     class="input"
     type="password"
     {placeholder}
+    {disabled}
     bind:value
     on:input
     on:focus
@@ -38,6 +85,7 @@
     class="input"
     type="text"
     {placeholder}
+    {disabled}
     bind:value
     on:input
     on:focus
@@ -48,7 +96,7 @@
 <style>
   .input-label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-sm);
     font-size: 14px;
     font-weight: 500;
     color: var(--text);
@@ -59,11 +107,11 @@
     padding: 12px;
     background: var(--bg-elevated);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     color: var(--text);
     font-size: 14px;
     font-family: inherit;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all var(--transition-base);
   }
 
   .input:focus {
@@ -73,5 +121,10 @@
 
   .input::placeholder {
     color: var(--text-subtle);
+  }
+
+  .input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 </style>
