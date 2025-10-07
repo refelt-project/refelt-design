@@ -14,7 +14,19 @@
    --space-xl: calc(var(--grid) * 6);    /* 48px */
    --space-xxl: calc(var(--grid) * 8);   /* 64px */
    
-   /* ❌ REMOVED: --padding-sm, --padding-md, --padding-lg (NIGDZIE NIE UŻYWANE) */
+   /* ============================================
+      BREAKPOINTS (Tailwind-compatible)
+      ============================================ */
+   --breakpoint-sm: 640px;   /* mobile */
+   --breakpoint-md: 768px;   /* tablet */
+   --breakpoint-lg: 1024px;  /* desktop */
+   
+   /* ============================================
+      GRID SYSTEM - Responsive Presets
+      ============================================ */
+   --grid-min-col-sm: 240px;  /* mobile - węższe karty */
+   --grid-min-col-md: 280px;  /* tablet - średnie karty */
+   --grid-min-col-lg: 320px;  /* desktop - pełne karty */
    
    /* ============================================
       BORDER RADIUS SYSTEM (shadcn/ui compatible)
@@ -69,7 +81,6 @@
    /* ============================================
       TRANSITIONS
       ============================================ */
-   /* ❌ REMOVED: --transition-fast (NIGDZIE NIE UŻYWANE) */
    --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
    --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
  }
@@ -146,6 +157,18 @@
    text-rendering: optimizeLegibility;
    
    transition: background var(--transition-slow);
+ }
+ 
+ /* ============================================
+    GLOBAL RWD UTILITIES
+    ============================================ */
+ @media (max-width: 640px) {
+   /* Mobile - wszystkie span-* collapsują do 1 kolumny */
+   :global(.span-2),
+   :global(.span-3),
+   :global([class*="span-"]) {
+     grid-column: span 1 !important;
+   }
  }
  
  /* ============================================

@@ -28,7 +28,7 @@
       <Text size="base" muted>Example cards using the new Card components</Text>
     </Stack>
 
-    <Grid columns={3} gap="lg" minColumnWidth="320px">
+    <Grid gap="lg">
       
       <!-- Payment Form Card -->
       <Card class="span-2">
@@ -130,7 +130,7 @@
               />
             </Stack>
             
-            <!-- Action Buttons - ✅ ZMIENIONO: Submit używa variant="accent" -->
+            <!-- Action Buttons -->
             <Stack direction="horizontal" gap="md">
               <Button variant="accent" type="submit">Submit</Button>
               <Button variant="outline" type="button">Cancel</Button>

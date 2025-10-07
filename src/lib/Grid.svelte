@@ -1,10 +1,11 @@
 <script>
   /**
-   * Grid Component - Responsive grid layout with controlled spacing
+   * Grid Component - Responsive grid layout with preset-based spacing
    * 
    * @typedef {"auto-fit" | "auto-fill" | number} Columns
    * @typedef {"auto" | number} Rows
    * @typedef {"sm" | "md" | "lg" | "xl" | "xxl"} Gap
+   * @typedef {"sm" | "md" | "lg"} Preset
    * 
    * @type {Columns}
    */
@@ -16,9 +17,9 @@
   export let rows = "auto";
   
   /**
-   * @type {string}
+   * @type {Preset} - Responsive column width preset (sm=240px, md=280px, lg=320px)
    */
-  export let minColumnWidth = "340px";
+  export let preset = "lg";
   
   /**
    * @type {Gap}
@@ -31,6 +32,7 @@
   const ALLOWED_GAPS = ["sm", "md", "lg", "xl", "xxl"];
   const ALLOWED_COLUMNS = ["auto-fit", "auto-fill"];
   const ALLOWED_ROWS = ["auto"];
+  const ALLOWED_PRESETS = ["sm", "md", "lg"];
 
   // Validation for gap
   if (!ALLOWED_GAPS.includes(gap)) {
@@ -56,6 +58,21 @@
     rows = "auto"; // fallback
   }
 
+  // Validation for preset
+  if (!ALLOWED_PRESETS.includes(preset)) {
+    console.error(`[Grid] Invalid preset: "${preset}". Allowed: ${ALLOWED_PRESETS.join(", ")}`);
+    preset = "lg"; // fallback
+  }
+
+  // ============================================
+  // PRESET SYSTEM - CSS Variables ONLY
+  // ============================================
+  const presets = {
+    sm: "var(--grid-min-col-sm)", // 240px
+    md: "var(--grid-min-col-md)", // 280px
+    lg: "var(--grid-min-col-lg)"  // 320px
+  };
+
   // ============================================
   // SPACING SYSTEM - CSS Variables ONLY
   // ============================================
@@ -67,7 +84,8 @@
     xxl: "var(--space-xxl)"
   };
 
-  $: gridTemplateColumns = computeColumns(columns, minColumnWidth);
+  $: minWidth = presets[preset];
+  $: gridTemplateColumns = computeColumns(columns, minWidth);
   $: gridTemplateRows = computeRows(rows);
   $: gapValue = gapMap[gap];
 

@@ -71,7 +71,7 @@
     </Stack>
 
     <!-- Rich Components Grid -->
-    <Grid>
+    <Grid gap="lg">
       
       <!-- Dashboard Card 1 -->
       <Card>
@@ -103,17 +103,17 @@
 
       <!-- Calendar Card -->
       <Card>
-        <div slot="header">
+        <Stack gap="md">
           <Text size="xs">OCTOBER 2025</Text>
-        </div>
-        <div class="calendar">
-          {#each calendarDays as day}
-            <div class="calendar-header">{day}</div>
-          {/each}
-          {#each days as day}
-            <button class="calendar-day">{day}</button>
-          {/each}
-        </div>
+          <div class="calendar">
+            {#each calendarDays as day}
+              <div class="calendar-header">{day}</div>
+            {/each}
+            {#each days as day}
+              <button class="calendar-day">{day}</button>
+            {/each}
+          </div>
+        </Stack>
       </Card>
 
       <!-- Move Goal Card -->
@@ -161,7 +161,7 @@
       </Card>
 
       <!-- Payments Table Card -->
-      <Card style="grid-column: span 2;">
+      <Card class="span-2">
         <Stack gap="md">
           <Text size="xs">PAYMENTS</Text>
           <Text>Manage your payments.</Text>
@@ -457,12 +457,5 @@
 
   .message-content-user :global(.text) {
     color: var(--accent-fg);
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    :global(.card[style*="grid-column: span 2"]) {
-      grid-column: span 1 !important;
-    }
   }
 </style>
