@@ -1,114 +1,97 @@
 <script>
   /**
-   * Text Component - shadcn/ui compatible (4 sizes only)
-   *
-   * @typedef {"p" | "span"} As
-   * @typedef {"sm" | "base" | "lg" | "xl"} Size
-   *
-   * @type {As}
+   * Text Component - LLM-optimized with component--modifier pattern
+   * 
+   * PROPS (semantic only):
+   * - as: "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+   * 
+   * MODIFIERS (via class prop):
+   * - Size: text--xs | text--sm | text--base | text--lg | text--xl | text--xxl
+   * - Style: text--muted | text--subtle | text--bold
+   * 
+   * USAGE:
+   * <Text>Default paragraph</Text>
+   * <Text class="text--lg text--muted">Large muted text</Text>
+   * <Text as="h2" class="text--xl text--bold">Heading</Text>
    */
+  
   export let as = "p";
-
-  /**
-   * @type {Size}
-   */
-  export let size = "base";
-
-  /**
-   * @type {boolean}
-   */
-  export let muted = false;
-
-  /**
-   * @type {string}
-   */
-  let className = "";
-  export { className as class };
-
-  // ============================================
-  // TYPE SAFETY
-  // ============================================
-  const ALLOWED_AS = ["p", "span"];
-  const ALLOWED_SIZES = ["sm", "base", "lg", "xl"];
-
-  // Validation guards
-  if (!ALLOWED_AS.includes(as)) {
-    console.error(
-      `[Text] Invalid as: "${as}". Allowed: ${ALLOWED_AS.join(", ")}`
-    );
-    as = "p";
-  }
-
-  if (!ALLOWED_SIZES.includes(size)) {
-    console.error(
-      `[Text] Invalid size: "${size}". Allowed: ${ALLOWED_SIZES.join(", ")}`
-    );
-    size = "base";
-  }
-
-  // ============================================
-  // shadcn/ui SIZE SYSTEM
-  // ============================================
-  const sizeMap = {
-    sm: { fontSize: "14px", lineHeight: "21px" }, // shadcn/ui exact
-    base: { fontSize: "16px", lineHeight: "24px" }, // default
-    lg: { fontSize: "18px", lineHeight: "28px" }, // larger
-    xl: { fontSize: "20px", lineHeight: "28px" }, // heading-like
-  };
-
-  $: styles = sizeMap[size];
+  
+  // Silent validation
+  const ALLOWED = ["p", "span", "h1", "h2", "h3", "h4", "h5", "h6"];
+  if (!ALLOWED.includes(as)) as = "p";
 </script>
 
-{#if as === "span"}
-  <span
-    class="text text-{size} {muted ? 'text-muted' : ''} {className}"
-    style="font-size: {styles.fontSize}; line-height: {styles.lineHeight};"
-  >
-    <slot />
-  </span>
-{:else}
-  <p
-    class="text text-{size} {muted ? 'text-muted' : ''} {className}"
-    style="font-size: {styles.fontSize}; line-height: {styles.lineHeight};"
-  >
-    <slot />
-  </p>
-{/if}
+<svelte:element 
+  this={as} 
+  class="text {$$props.class || ''}"
+>
+  <slot />
+</svelte:element>
 
 <style>
+  /* ============================================
+     BASE TEXT
+     ============================================ */
   .text {
     margin: 0;
     padding: 0;
     color: var(--text);
-
-    /* PREMIUM SYSTEM FONT STACK */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif;
   }
 
-  /* REMOVED properties (inherited from body):
-     - font-smoothing
-     - font-feature-settings
-     - font-synthesis
-     - text-rendering
-     - font-optical-sizing
-  */
-
-  .text-muted {
-    color: var(--text-muted);
-  }
-
-  /* Size-specific tweaks */
-  .text-sm,
-  .text-base {
+  /* ============================================
+     SIZE MODIFIERS (via class)
+     ============================================ */
+  .text.text--xs {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-tight);
     font-weight: 400;
   }
 
-  .text-lg {
+  .text.text--sm {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    font-weight: 400;
+  }
+
+  .text.text--base {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    font-weight: 400;
+  }
+
+  .text.text--lg {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-normal);
     font-weight: 500;
   }
 
-  .text-xl {
+  .text.text--xl {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-tight);
+    font-weight: 600;
+  }
+
+  .text.text--xxl {
+    font-size: var(--font-size-xxl);
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+  }
+
+  /* ============================================
+     STYLE MODIFIERS (via class)
+     ============================================ */
+  .text.text--muted {
+    color: var(--text-muted);
+  }
+
+  .text.text--subtle {
+    color: var(--text-subtle);
+  }
+
+  .text.text--bold {
     font-weight: 600;
   }
 </style>

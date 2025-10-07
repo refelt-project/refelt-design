@@ -1,56 +1,35 @@
 <script>
   /**
-   * Input Component - Type-safe input field
+   * Input Component - LLM-optimized with functional props
    * 
-   * @typedef {"text" | "email" | "password"} Type
+   * PROPS (functional):
+   * - value: string (bindable)
+   * - type: "text" | "email" | "password"
+   * - placeholder: string
+   * - disabled: boolean
+   * - id: string
+   * - label: string
    * 
-   * @type {string}
+   * MODIFIERS (via class prop):
+   * - Size: input--sm | input--md | input--lg
+   * 
+   * USAGE:
+   * <Input label="Email" type="email" bind:value={email} />
+   * <Input placeholder="Search..." class="input--lg" />
    */
+  
   export let value = "";
-  
-  /**
-   * @type {string}
-   */
   export let placeholder = "";
-  
-  /**
-   * @type {Type}
-   */
   export let type = "text";
-  
-  /**
-   * @type {string}
-   */
   export let id = "";
-  
-  /**
-   * @type {string}
-   */
   export let label = "";
-
-  /**
-   * @type {boolean}
-   */
   export let disabled = false;
 
-  // ============================================
-  // TYPE SAFETY - tylko dozwolone wartości
-  // ============================================
-  const ALLOWED_TYPES = ["text", "email", "password"];
-
-  // Validation guard
-  if (!ALLOWED_TYPES.includes(type)) {
-    console.error(`[Input] Invalid type: "${type}". Allowed: ${ALLOWED_TYPES.join(", ")}`);
-    type = "text"; // fallback
-  }
+  // Silent validation
+  const TYPES = ["text", "email", "password"];
+  if (!TYPES.includes(type)) type = "text";
 </script>
 
-<!--
-  SECURITY: 
-  - NO style prop accepted
-  - NO $$restProps spread (except events)
-  - Events forwarded: input, focus, blur
--->
 {#if label}
   <label for={id} class="input-label">{label}</label>
 {/if}
@@ -58,11 +37,11 @@
 {#if type === "email"}
   <input
     {id}
-    class="input"
     type="email"
     {placeholder}
     {disabled}
     bind:value
+    class="input {$$props.class || ''}"
     on:input
     on:focus
     on:blur
@@ -70,11 +49,11 @@
 {:else if type === "password"}
   <input
     {id}
-    class="input"
     type="password"
     {placeholder}
     {disabled}
     bind:value
+    class="input {$$props.class || ''}"
     on:input
     on:focus
     on:blur
@@ -82,11 +61,11 @@
 {:else}
   <input
     {id}
-    class="input"
     type="text"
     {placeholder}
     {disabled}
     bind:value
+    class="input {$$props.class || ''}"
     on:input
     on:focus
     on:blur
@@ -94,6 +73,9 @@
 {/if}
 
 <style>
+  /* ============================================
+     LABEL
+     ============================================ */
   .input-label {
     display: block;
     margin-bottom: var(--space-sm);
@@ -102,6 +84,9 @@
     color: var(--text);
   }
 
+  /* ============================================
+     BASE INPUT
+     ============================================ */
   .input {
     width: 100%;
     padding: 12px;
@@ -126,5 +111,23 @@
   .input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  /* ============================================
+     SIZE MODIFIERS (via class)
+     ============================================ */
+  .input.input--sm {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .input.input--md {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .input.input--lg {
+    padding: 14px 16px;
+    font-size: 16px;
   }
 </style>

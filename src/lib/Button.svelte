@@ -1,63 +1,34 @@
 <script>
   /**
-   * Button Component - shadcn/ui compatible
+   * Button Component - LLM-optimized with component--modifier pattern
    * 
-   * @typedef {"button" | "submit" | "reset"} Type
-   * @typedef {"default" | "secondary" | "accent" | "destructive" | "outline" | "ghost" | "link"} Variant
-   * @typedef {"sm" | "md" | "lg"} Size
+   * PROPS (semantic only):
+   * - variant: "default" | "secondary" | "accent" | "destructive" | "outline" | "ghost" | "link"
+   * - type: "button" | "submit" | "reset"
+   * - disabled: boolean
    * 
-   * @type {Type}
+   * MODIFIERS (via class prop):
+   * - Size: btn--sm | btn--md | btn--lg
+   * - Style: btn--rounded
+   * 
+   * USAGE:
+   * <Button variant="accent" class="btn--lg">Save</Button>
+   * <Button variant="destructive" class="btn--sm btn--rounded">Delete</Button>
    */
-  export let type = "button";
   
-  /**
-   * @type {Variant}
-   */
   export let variant = "default";
-  
-  /**
-   * @type {Size}
-   */
-  export let size = "md";
-  
-  /**
-   * @type {boolean}
-   */
+  export let type = "button";
   export let disabled = false;
   
-  /**
-   * @type {string}
-   */
-  let className = "";
-  export { className as class };
-
-  // ============================================
-  // TYPE SAFETY
-  // ============================================
-  const ALLOWED_TYPES = ["button", "submit", "reset"];
-  const ALLOWED_VARIANTS = ["default", "secondary", "accent", "destructive", "outline", "ghost", "link"];
-  const ALLOWED_SIZES = ["sm", "md", "lg"];
-
-  if (!ALLOWED_TYPES.includes(type)) {
-    console.error(`[Button] Invalid type: "${type}". Allowed: ${ALLOWED_TYPES.join(", ")}`);
-    type = "button";
-  }
-
-  if (!ALLOWED_VARIANTS.includes(variant)) {
-    console.error(`[Button] Invalid variant: "${variant}". Allowed: ${ALLOWED_VARIANTS.join(", ")}`);
-    variant = "default";
-  }
-
-  if (!ALLOWED_SIZES.includes(size)) {
-    console.error(`[Button] Invalid size: "${size}". Allowed: ${ALLOWED_SIZES.join(", ")}`);
-    size = "md";
-  }
+  // Silent validation (no console errors for LLM)
+  const VARIANTS = ["default", "secondary", "accent", "destructive", "outline", "ghost", "link"];
+  if (!VARIANTS.includes(variant)) variant = "default";
 </script>
 
 <button
   {type}
   {disabled}
-  class="btn btn-variant-{variant} btn-size-{size} {className}"
+  class="btn btn--{variant} {$$props.class || ''}"
   on:click
 >
   <slot />
@@ -82,6 +53,10 @@
     border: none;
     outline: none;
     font-family: inherit;
+    
+    /* Default size (md) */
+    height: 36px;
+    padding: 0 16px;
   }
 
   .btn:focus-visible {
@@ -96,100 +71,100 @@
   }
 
   /* ============================================
-     VARIANTS
+     VARIANTS (semantic colors)
      ============================================ */
   
-  /* DEFAULT = PRIMARY (czarny na light, biały na dark) */
-  .btn-variant-default {
+  .btn--default {
     background: var(--primary);
     color: var(--primary-fg);
   }
 
-  .btn-variant-default:hover:not(:disabled) {
+  .btn--default:hover:not(:disabled) {
     opacity: 0.9;
   }
 
-  /* SECONDARY = szary */
-  .btn-variant-secondary {
+  .btn--secondary {
     background: var(--secondary);
     color: var(--secondary-fg);
   }
 
-  .btn-variant-secondary:hover:not(:disabled) {
+  .btn--secondary:hover:not(:disabled) {
     opacity: 0.8;
   }
 
-  /* ACCENT = niebieski */
-  .btn-variant-accent {
+  .btn--accent {
     background: var(--accent);
     color: var(--accent-fg);
   }
 
-  .btn-variant-accent:hover:not(:disabled) {
+  .btn--accent:hover:not(:disabled) {
     opacity: 0.9;
   }
 
-  /* DESTRUCTIVE = czerwony */
-  .btn-variant-destructive {
+  .btn--destructive {
     background: var(--destructive);
     color: var(--destructive-fg);
   }
 
-  .btn-variant-destructive:hover:not(:disabled) {
+  .btn--destructive:hover:not(:disabled) {
     opacity: 0.9;
   }
 
-  /* OUTLINE = border only */
-  .btn-variant-outline {
+  .btn--outline {
     background: transparent;
     color: var(--text);
     border: 1px solid var(--border);
   }
 
-  .btn-variant-outline:hover:not(:disabled) {
+  .btn--outline:hover:not(:disabled) {
     background: var(--bg-elevated);
   }
 
-  /* GHOST = transparent */
-  .btn-variant-ghost {
+  .btn--ghost {
     background: transparent;
     color: var(--text);
   }
 
-  .btn-variant-ghost:hover:not(:disabled) {
+  .btn--ghost:hover:not(:disabled) {
     background: var(--bg-elevated);
   }
 
-  /* LINK = like a link */
-  .btn-variant-link {
+  .btn--link {
     background: transparent;
     color: var(--accent);
     text-decoration: underline;
     text-underline-offset: 4px;
   }
 
-  .btn-variant-link:hover:not(:disabled) {
+  .btn--link:hover:not(:disabled) {
     text-decoration: none;
   }
 
   /* ============================================
-     SIZES
+     SIZE MODIFIERS (via class)
      ============================================ */
-  .btn-size-sm {
+  .btn.btn--sm {
     height: 32px;
     padding: 0 12px;
     font-size: 13px;
   }
 
-  .btn-size-md {
+  .btn.btn--md {
     height: 36px;
     padding: 0 16px;
     font-size: 14px;
   }
 
-  .btn-size-lg {
+  .btn.btn--lg {
     height: 44px;
     padding: 0 24px;
     font-size: 16px;
+  }
+
+  /* ============================================
+     STYLE MODIFIERS (via class)
+     ============================================ */
+  .btn.btn--rounded {
+    border-radius: var(--radius-full);
   }
 </style>

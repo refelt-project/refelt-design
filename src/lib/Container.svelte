@@ -1,16 +1,16 @@
 <script>
   /**
    * Container Component - Centered content wrapper
-   * No props needed - pure container
+   * 
+   * NO PROPS - Pure container
+   * 
+   * USAGE:
+   * <Container>
+   *   <YourContent />
+   * </Container>
    */
 </script>
 
-<!--
-  SECURITY: 
-  - NO style prop accepted
-  - NO $$restProps spread
-  - Only class can be added via parent
--->
 <div class="container">
   <slot />
 </div>

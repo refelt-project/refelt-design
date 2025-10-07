@@ -3,13 +3,15 @@
     Text,
     Button,
     Card,
-    CardHeader,
-    CardFooter,
     Badge,
     Input,
     Container,
     Stack,
-    Grid
+    Grid,
+    Checkbox,
+    Textarea,
+    Label,
+    Separator
   } from '../lib';
 
   // Form state
@@ -21,30 +23,30 @@
 </script>
 
 <Container>
-  <Stack gap="xl">
+  <Stack class="stack--gap-xl">
     
-    <Stack gap="md">
-      <Text size="xl">Payment Form Demo</Text>
-      <Text size="base" muted>Example cards using the new Card components</Text>
+    <Stack class="stack--gap-md">
+      <Text as="h1" class="text--xl">Payment Form Demo</Text>
+      <Text class="text--base text--muted">Example using new component--modifier pattern</Text>
     </Stack>
 
-    <Grid gap="lg">
+    <Grid class="grid--gap-lg">
       
       <!-- Payment Form Card -->
       <Card class="span-2">
         <form>
-          <Stack gap="lg">
+          <Stack class="stack--gap-lg">
             
             <!-- Payment Method Section -->
-            <Stack gap="lg">
-              <Stack gap="sm">
-                <Text size="lg">Payment Method</Text>
-                <Text size="sm" muted>All transactions are secure and encrypted</Text>
+            <Stack class="stack--gap-lg">
+              <Stack class="stack--gap-sm">
+                <Text class="text--lg">Payment Method</Text>
+                <Text class="text--sm text--muted">All transactions are secure and encrypted</Text>
               </Stack>
               
-              <Stack gap="lg">
-                <Stack gap="sm">
-                  <label for="card-name" class="label">Name on Card</label>
+              <Stack class="stack--gap-lg">
+                <Stack class="stack--gap-sm">
+                  <Label for="card-name">Name on Card</Label>
                   <Input
                     id="card-name"
                     placeholder="John Doe"
@@ -52,19 +54,19 @@
                   />
                 </Stack>
                 
-                <Grid columns={3} gap="md">
-                  <Stack gap="sm" class="span-2">
-                    <label for="card-number" class="label">Card Number</label>
+                <Grid columns={3} class="grid--gap-md">
+                  <Stack class="stack--gap-sm span-2">
+                    <Label for="card-number">Card Number</Label>
                     <Input
                       id="card-number"
                       placeholder="1234 5678 9012 3456"
                       bind:value={cardNumber}
                     />
-                    <Text size="sm" muted>Enter your 16-digit number.</Text>
+                    <Text class="text--sm text--muted">Enter your 16-digit number.</Text>
                   </Stack>
                   
-                  <Stack gap="sm">
-                    <label for="cvv" class="label">CVV</label>
+                  <Stack class="stack--gap-sm">
+                    <Label for="cvv">CVV</Label>
                     <Input
                       id="cvv"
                       placeholder="123"
@@ -73,17 +75,17 @@
                   </Stack>
                 </Grid>
                 
-                <Grid columns={2} gap="md">
-                  <Stack gap="sm">
-                    <label for="month" class="label">Month</label>
+                <Grid columns={2} class="grid--gap-md">
+                  <Stack class="stack--gap-sm">
+                    <Label for="month">Month</Label>
                     <Input
                       id="month"
                       placeholder="MM"
                     />
                   </Stack>
                   
-                  <Stack gap="sm">
-                    <label for="year" class="label">Year</label>
+                  <Stack class="stack--gap-sm">
+                    <Label for="year">Year</Label>
                     <Input
                       id="year"
                       placeholder="YYYY"
@@ -93,45 +95,39 @@
               </Stack>
             </Stack>
             
-            <!-- Separator -->
-            <div class="separator"></div>
+            <!-- Separator Component -->
+            <Separator />
             
             <!-- Billing Address Section -->
-            <Stack gap="lg">
-              <Stack gap="sm">
-                <Text size="lg">Billing Address</Text>
-                <Text size="sm" muted>The billing address associated with your payment method</Text>
+            <Stack class="stack--gap-lg">
+              <Stack class="stack--gap-sm">
+                <Text class="text--lg">Billing Address</Text>
+                <Text class="text--sm text--muted">The billing address associated with your payment method</Text>
               </Stack>
               
-              <Stack direction="horizontal" gap="sm">
-                <input 
-                  type="checkbox" 
-                  id="same-shipping"
-                  class="checkbox"
-                  bind:checked={sameAsShipping}
-                />
-                <label for="same-shipping" class="label-inline">
-                  Same as shipping address
-                </label>
-              </Stack>
+              <Checkbox
+                id="same-shipping"
+                label="Same as shipping address"
+                bind:checked={sameAsShipping}
+              />
             </Stack>
             
-            <!-- Separator -->
-            <div class="separator"></div>
+            <!-- Separator Component -->
+            <Separator />
             
             <!-- Comments Section -->
-            <Stack gap="sm">
-              <label for="comments" class="label">Comments</label>
-              <textarea
+            <Stack class="stack--gap-sm">
+              <Label for="comments">Comments</Label>
+              <Textarea
                 id="comments"
                 placeholder="Add any additional comments"
-                class="textarea"
                 bind:value={comments}
+                rows={4}
               />
             </Stack>
             
             <!-- Action Buttons -->
-            <Stack direction="horizontal" gap="md">
+            <Stack class="stack--horizontal stack--gap-md">
               <Button variant="accent" type="submit">Submit</Button>
               <Button variant="outline" type="button">Cancel</Button>
             </Stack>
@@ -140,19 +136,24 @@
         </form>
       </Card>
 
-      <!-- Empty Card 1 -->
-      <Card>
-        <Stack gap="md">
-          <Text size="base">EMPTY CARD 1</Text>
-          <Text size="sm" muted>This is a placeholder card for future content.</Text>
+      <!-- Status Card -->
+      <Card variant="elevated">
+        <Stack class="stack--gap-md">
+          <Text class="text--base">Payment Status</Text>
+          <Stack class="stack--horizontal stack--gap-sm">
+            <Badge variant="success" class="badge--sm">Verified</Badge>
+            <Badge variant="info" class="badge--sm">Encrypted</Badge>
+          </Stack>
+          <Text class="text--sm text--muted">Your payment information is secure</Text>
         </Stack>
       </Card>
 
-      <!-- Empty Card 2 -->
-      <Card>
-        <Stack gap="md">
-          <Text size="base">EMPTY CARD 2</Text>
-          <Text size="sm" muted>Another placeholder card ready for content.</Text>
+      <!-- Info Card -->
+      <Card class="card--glass">
+        <Stack class="stack--gap-md">
+          <Text class="text--base">Glass Morphism</Text>
+          <Text class="text--sm text--muted">This card demonstrates the new glass effect modifier</Text>
+          <Button variant="ghost" class="btn--sm">Learn More</Button>
         </Stack>
       </Card>
 
@@ -163,57 +164,4 @@
 <style>
   /* Utility */
   :global(.span-2) { grid-column: span 2; }
-  
-  /* Form elements */
-  .label {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  
-  .label-inline {
-    font-size: 14px;
-    color: var(--text);
-    cursor: pointer;
-  }
-  
-  .checkbox {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-  }
-  
-  .textarea {
-    min-height: 96px;
-    width: 100%;
-    padding: 12px;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    color: var(--text);
-    font-size: 14px;
-    font-family: inherit;
-    resize: vertical;
-    transition: all var(--transition-base);
-  }
-  
-  .textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  
-  .textarea::placeholder {
-    color: var(--text-subtle);
-  }
-  
-  /* Separator */
-  .separator {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    margin: 0;
-  }
 </style>

@@ -1,139 +1,90 @@
 <script>
   /**
-   * Grid Component - Responsive grid layout with preset-based spacing
+   * Grid Component - LLM-optimized with CSS custom properties
    * 
-   * @typedef {"auto-fit" | "auto-fill" | number} Columns
-   * @typedef {"auto" | number} Rows
-   * @typedef {"sm" | "md" | "lg" | "xl" | "xxl"} Gap
-   * @typedef {"sm" | "md" | "lg"} Preset
+   * PROPS (functional layout):
+   * - columns: number | "auto-fit" | "auto-fill" (default: "auto-fit")
+   * - rows: number | "auto" (default: "auto")
+   * - preset: "sm" | "md" | "lg" (responsive min-width, default: "lg")
    * 
-   * @type {Columns}
+   * MODIFIERS (via class prop):
+   * - Gap: grid--gap-sm | grid--gap-md | grid--gap-lg | grid--gap-xl | grid--gap-xxl
+   * 
+   * USAGE:
+   * <Grid class="grid--gap-lg">...</Grid>
+   * <Grid columns={3} class="grid--gap-md">...</Grid>
+   * <Grid preset="sm" class="grid--gap-xl">...</Grid>
    */
+  
   export let columns = "auto-fit";
-  
-  /**
-   * @type {Rows}
-   */
   export let rows = "auto";
-  
-  /**
-   * @type {Preset} - Responsive column width preset (sm=240px, md=280px, lg=320px)
-   */
   export let preset = "lg";
-  
-  /**
-   * @type {Gap}
-   */
-  export let gap = "lg";
 
-  // ============================================
-  // TYPE SAFETY - tylko dozwolone wartości
-  // ============================================
-  const ALLOWED_GAPS = ["sm", "md", "lg", "xl", "xxl"];
-  const ALLOWED_COLUMNS = ["auto-fit", "auto-fill"];
-  const ALLOWED_ROWS = ["auto"];
-  const ALLOWED_PRESETS = ["sm", "md", "lg"];
-
-  // Validation for gap
-  if (!ALLOWED_GAPS.includes(gap)) {
-    console.error(`[Grid] Invalid gap: "${gap}". Allowed: ${ALLOWED_GAPS.join(", ")}`);
-    gap = "lg"; // fallback
-  }
-
-  // Validation for columns
-  if (
-    typeof columns !== "number" &&
-    !ALLOWED_COLUMNS.includes(columns)
-  ) {
-    console.error(`[Grid] Invalid columns: "${columns}". Allowed: ${ALLOWED_COLUMNS.join(", ")} or number`);
-    columns = "auto-fit"; // fallback
-  }
-
-  // Validation for rows
-  if (
-    typeof rows !== "number" &&
-    !ALLOWED_ROWS.includes(rows)
-  ) {
-    console.error(`[Grid] Invalid rows: "${rows}". Allowed: ${ALLOWED_ROWS.join(", ")} or number`);
-    rows = "auto"; // fallback
-  }
-
-  // Validation for preset
-  if (!ALLOWED_PRESETS.includes(preset)) {
-    console.error(`[Grid] Invalid preset: "${preset}". Allowed: ${ALLOWED_PRESETS.join(", ")}`);
-    preset = "lg"; // fallback
-  }
-
-  // ============================================
-  // PRESET SYSTEM - CSS Variables ONLY
-  // ============================================
+  // Preset min-widths
   const presets = {
-    sm: "var(--grid-min-col-sm)", // 240px
-    md: "var(--grid-min-col-md)", // 280px
-    lg: "var(--grid-min-col-lg)"  // 320px
+    sm: "240px",
+    md: "280px",
+    lg: "320px"
   };
 
-  // ============================================
-  // SPACING SYSTEM - CSS Variables ONLY
-  // ============================================
-  const gapMap = {
-    sm: "var(--space-sm)",
-    md: "var(--space-md)",
-    lg: "var(--space-lg)",
-    xl: "var(--space-xl)",
-    xxl: "var(--space-xxl)"
-  };
+  // Silent validation
+  if (!["sm", "md", "lg"].includes(preset)) preset = "lg";
 
   $: minWidth = presets[preset];
-  $: gridTemplateColumns = computeColumns(columns, minWidth);
-  $: gridTemplateRows = computeRows(rows);
-  $: gapValue = gapMap[gap];
+  $: gridColumns = computeColumns(columns, minWidth);
+  $: gridRows = computeRows(rows);
 
-  function computeColumns(cols, minWidth) {
-    if (cols === "auto-fit") {
-      return `repeat(auto-fit, minmax(${minWidth}, 1fr))`;
-    }
-    if (cols === "auto-fill") {
-      return `repeat(auto-fill, minmax(${minWidth}, 1fr))`;
-    }
-    if (typeof cols === "number") {
-      return `repeat(${cols}, 1fr)`;
-    }
-    // Direct CSS value (fallback)
+  function computeColumns(cols, min) {
+    if (cols === "auto-fit") return `repeat(auto-fit, minmax(${min}, 1fr))`;
+    if (cols === "auto-fill") return `repeat(auto-fill, minmax(${min}, 1fr))`;
+    if (typeof cols === "number") return `repeat(${cols}, 1fr)`;
     return cols;
   }
 
   function computeRows(r) {
-    if (r === "auto") {
-      return "auto";
-    }
-    if (typeof r === "number") {
-      return `repeat(${r}, auto)`;
-    }
-    // Direct CSS value (fallback)
+    if (r === "auto") return "auto";
+    if (typeof r === "number") return `repeat(${r}, auto)`;
     return r;
   }
 </script>
 
-<!--
-  SECURITY: 
-  - NO style prop accepted
-  - NO $$restProps spread
-  - Only class can be added via parent
--->
 <div 
-  class="grid" 
-  style="
-    grid-template-columns: {gridTemplateColumns}; 
-    grid-template-rows: {gridTemplateRows}; 
-    gap: {gapValue};
-  "
+  class="grid {$$props.class || ''}"
+  style="--grid-columns: {gridColumns}; --grid-rows: {gridRows};"
 >
   <slot />
 </div>
 
 <style>
+  /* ============================================
+     BASE GRID
+     ============================================ */
   .grid {
     display: grid;
+    grid-template-columns: var(--grid-columns);
+    grid-template-rows: var(--grid-rows);
+  }
+
+  /* ============================================
+     GAP MODIFIERS (via class)
+     ============================================ */
+  .grid.grid--gap-sm {
+    gap: var(--space-sm);
+  }
+
+  .grid.grid--gap-md {
+    gap: var(--space-md);
+  }
+
+  .grid.grid--gap-lg {
+    gap: var(--space-lg);
+  }
+
+  .grid.grid--gap-xl {
+    gap: var(--space-xl);
+  }
+
+  .grid.grid--gap-xxl {
+    gap: var(--space-xxl);
   }
 </style>

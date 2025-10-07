@@ -1,49 +1,38 @@
 <script>
   /**
-   * Card Component - shadcn/ui compatible
-   * Simplified: header, content (auto), footer slots
+   * Card Component - LLM-optimized with component--modifier pattern
    * 
-   * @typedef {"solid" | "dashed"} BorderStyle
-   * @typedef {"default" | "elevated"} Variant
+   * PROPS (semantic only):
+   * - variant: "default" | "elevated"
    * 
-   * @type {BorderStyle}
+   * MODIFIERS (via class prop):
+   * - Border: card--border-dashed
+   * - Padding: card--p-sm | card--p-lg
+   * - Background: card--transparent | card--glass
+   * 
+   * SLOTS:
+   * - default: Card content
+   * - header: Optional header section
+   * - footer: Optional footer section
+   * 
+   * USAGE:
+   * <Card>Content</Card>
+   * <Card variant="elevated" class="card--p-lg">Content</Card>
+   * <Card class="card--border-dashed card--transparent">Content</Card>
    */
-  export let borderStyle = "solid";
   
-  /**
-   * @type {Variant}
-   */
   export let variant = "default";
   
-  /**
-   * @type {string}
-   */
-  let className = "";
-  export { className as class };
-
-  // ============================================
-  // TYPE SAFETY
-  // ============================================
-  const ALLOWED_BORDER_STYLES = ["solid", "dashed"];
-  const ALLOWED_VARIANTS = ["default", "elevated"];
-
-  // Validation guards
-  if (!ALLOWED_BORDER_STYLES.includes(borderStyle)) {
-    console.error(`[Card] Invalid borderStyle: "${borderStyle}". Allowed: ${ALLOWED_BORDER_STYLES.join(", ")}`);
-    borderStyle = "solid";
-  }
-
-  if (!ALLOWED_VARIANTS.includes(variant)) {
-    console.error(`[Card] Invalid variant: "${variant}". Allowed: ${ALLOWED_VARIANTS.join(", ")}`);
-    variant = "default";
-  }
+  // Silent validation
+  const VARIANTS = ["default", "elevated"];
+  if (!VARIANTS.includes(variant)) variant = "default";
 </script>
 
-<div 
-  class="card card-{variant} card-border-{borderStyle} {className}"
->
+<div class="card card--{variant} {$$props.class || ''}">
   {#if $$slots.header}
-    <slot name="header" />
+    <div class="card-header">
+      <slot name="header" />
+    </div>
   {/if}
   
   <div class="card-content">
@@ -51,42 +40,82 @@
   </div>
   
   {#if $$slots.footer}
-    <slot name="footer" />
+    <div class="card-footer">
+      <slot name="footer" />
+    </div>
   {/if}
 </div>
 
 <style>
+  /* ============================================
+     BASE CARD
+     ============================================ */
   .card {
-    /* shadcn/ui exact values */
-    border-radius: var(--radius-lg); /* 10px */
-    border-width: 1px;
-    border-color: var(--border);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
     background: var(--bg-card);
     color: var(--text);
     transition: all var(--transition-slow);
   }
 
-  /* Border styles */
-  .card-border-solid {
-    border-style: solid;
-  }
-
-  .card-border-dashed {
-    border-style: dashed;
-  }
-
-  /* Variants */
-  .card-default {
+  /* ============================================
+     VARIANTS
+     ============================================ */
+  .card--default {
     background: var(--bg-card);
   }
 
-  .card-elevated {
+  .card--elevated {
     background: var(--bg-elevated);
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    box-shadow: var(--shadow-md);
   }
 
-  /* Content auto-padding */
+  /* ============================================
+     CONTENT SECTIONS
+     ============================================ */
+  .card-header {
+    padding: var(--space-lg);
+    padding-bottom: 0;
+  }
+
   .card-content {
-    padding: var(--space-lg); /* 24px - shadcn/ui exact */
+    padding: var(--space-lg);
+  }
+
+  .card-footer {
+    padding: var(--space-lg);
+    padding-top: 0;
+  }
+
+  /* ============================================
+     BORDER MODIFIERS (via class)
+     ============================================ */
+  .card.card--border-dashed {
+    border-style: dashed;
+  }
+
+  /* ============================================
+     PADDING MODIFIERS (via class)
+     ============================================ */
+  .card.card--p-sm .card-content {
+    padding: var(--space-sm);
+  }
+
+  .card.card--p-lg .card-content {
+    padding: var(--space-xl);
+  }
+
+  /* ============================================
+     BACKGROUND MODIFIERS (via class)
+     ============================================ */
+  .card.card--transparent {
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .card.card--glass {
+    background: color-mix(in oklch, var(--bg-card) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border-color: color-mix(in oklch, var(--border) 50%, transparent);
   }
 </style>

@@ -1,74 +1,80 @@
 <script>
   /**
-   * Stack Component - Vertical/Horizontal layout with controlled spacing
+   * Stack Component - LLM-optimized with component--modifier pattern
    * 
-   * @typedef {"vertical" | "horizontal"} Direction
-   * @typedef {"sm" | "md" | "lg" | "xl" | "xxl"} Gap
+   * NO PROPS - All via classes
    * 
-   * @type {Direction}
+   * MODIFIERS (via class prop):
+   * - Direction: stack--vertical (default) | stack--horizontal
+   * - Gap: stack--gap-sm | stack--gap-md | stack--gap-lg | stack--gap-xl | stack--gap-xxl
+   * - Align: stack--align-start | stack--align-center | stack--align-end
+   * 
+   * USAGE:
+   * <Stack class="stack--gap-lg">...</Stack>
+   * <Stack class="stack--horizontal stack--gap-md stack--align-center">...</Stack>
    */
-  export let direction = "vertical";
-  
-  /**
-   * @type {Gap}
-   */
-  export let gap = "md";
-
-  // ============================================
-  // TYPE SAFETY - tylko dozwolone wartości
-  // ============================================
-  const ALLOWED_DIRECTIONS = ["vertical", "horizontal"];
-  const ALLOWED_GAPS = ["sm", "md", "lg", "xl", "xxl"];
-
-  // Validation guards
-  if (!ALLOWED_DIRECTIONS.includes(direction)) {
-    console.error(`[Stack] Invalid direction: "${direction}". Allowed: ${ALLOWED_DIRECTIONS.join(", ")}`);
-    direction = "vertical"; // fallback
-  }
-
-  if (!ALLOWED_GAPS.includes(gap)) {
-    console.error(`[Stack] Invalid gap: "${gap}". Allowed: ${ALLOWED_GAPS.join(", ")}`);
-    gap = "md"; // fallback
-  }
-
-  // ============================================
-  // SPACING SYSTEM - CSS Variables ONLY
-  // ============================================
-  const gapMap = {
-    sm: "var(--space-sm)",
-    md: "var(--space-md)",
-    lg: "var(--space-lg)",
-    xl: "var(--space-xl)",
-    xxl: "var(--space-xxl)"
-  };
-
-  $: gapValue = gapMap[gap];
 </script>
 
-<!--
-  SECURITY: 
-  - NO style prop accepted
-  - NO $$restProps spread
-  - Only class can be added via parent
--->
-<div 
-  class="stack stack-{direction}"
-  style="gap: {gapValue}"
->
+<div class="stack {$$props.class || ''}">
   <slot />
 </div>
 
 <style>
+  /* ============================================
+     BASE STACK (vertical by default)
+     ============================================ */
   .stack {
     display: flex;
-  }
-
-  .stack-vertical {
     flex-direction: column;
   }
 
-  .stack-horizontal {
+  /* ============================================
+     DIRECTION MODIFIERS
+     ============================================ */
+  .stack.stack--vertical {
+    flex-direction: column;
+  }
+
+  .stack.stack--horizontal {
     flex-direction: row;
     align-items: center;
+  }
+
+  /* ============================================
+     GAP MODIFIERS
+     ============================================ */
+  .stack.stack--gap-sm {
+    gap: var(--space-sm);
+  }
+
+  .stack.stack--gap-md {
+    gap: var(--space-md);
+  }
+
+  .stack.stack--gap-lg {
+    gap: var(--space-lg);
+  }
+
+  .stack.stack--gap-xl {
+    gap: var(--space-xl);
+  }
+
+  .stack.stack--gap-xxl {
+    gap: var(--space-xxl);
+  }
+
+  /* ============================================
+     ALIGNMENT MODIFIERS
+     ============================================ */
+  .stack.stack--align-start {
+    align-items: flex-start;
+  }
+
+  .stack.stack--align-center {
+    align-items: center;
+  }
+
+  .stack.stack--align-end {
+    align-items: flex-end;
   }
 </style>
