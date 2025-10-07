@@ -15,7 +15,7 @@
 
   let email = '';
   let password = '';
-  let shareLink = 'https://choosewise.com/docs';
+  let shareLink = 'https://refelt.dev/docs';
   
   // Calendar data
   const calendarDays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -58,15 +58,15 @@
     <Stack gap="lg">
       <div class="badge-hero">
         <Sparkles size={14} />
-        New Components Available
+        New in Refelt
       </div>
       
       <Text as="h1" size="xxl">
-        Rich Components<br>Showcase
+        Components & Layouts<br>Showcase
       </Text>
       
       <Text size="lg">
-        Explore advanced component compositions built with our base system. From calendars to data tables, chat interfaces to progress trackers.
+        Poznaj gotowe kompozycje oparte o naszą bazę. Od kalendarzy i tabel, po czat i proste formularze.
       </Text>
     </Stack>
 
@@ -79,7 +79,7 @@
           <Stack gap="sm">
             <Text size="xs">TOTAL REVENUE</Text>
             <Text size="xl">$15,231.89</Text>
-            <Text size="sm">+20.1% from last month</Text>
+            <Text size="sm">+20.1% vs last month</Text>
           </Stack>
           <div class="icon-wrapper">
             <DollarSign size={20} />
@@ -93,7 +93,7 @@
           <Stack gap="sm">
             <Text size="xs">SUBSCRIPTIONS</Text>
             <Text size="xl">+2,350</Text>
-            <Text size="sm">+180.1% from last month</Text>
+            <Text size="sm">+180.1% vs last month</Text>
           </Stack>
           <div class="icon-wrapper">
             <Users size={20} />
@@ -287,7 +287,7 @@
       <Card variant="transparent">
         <Stack gap="md">
           <Text size="xs">TRANSPARENT CARD</Text>
-          <Text>This card has a transparent background - perfect for layering!</Text>
+          <Text>This card has a transparent background — perfect for layering.</Text>
           <Stack direction="horizontal" gap="sm">
             <Badge variant="success">Active</Badge>
             <Badge variant="warning">Warning</Badge>

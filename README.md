@@ -1,168 +1,61 @@
-# Native Svelte UI Kit
+# Refelt
 
-**Minimal. Fast. LLM-Friendly.**
+Refelt to lekki „refine dla Svelte” z opcjonalnym wsparciem Svelte Native. Błyskawicznie budujesz strony, aplikacje i dashboardy z gotowych, czystych komponentów.
 
-## Philosophy
+## Kluczowe cechy
+- ⚡ **Superszybkie**: czysty Svelte, zero zbędnych zależności.
+- 🎛️ **Baza komponentów**: Button, Card, Badge, Grid, Stack, Input, Text, Container.
+- 🧩 **Kompozycje „rich”**: Navbar, ThemeToggle i gotowe układy.
+- 🌓 **Motywy**: Dark/Light z `data-theme`.
+- 🧭 **Routing**: `svelte-spa-router` z przykładami.
+- 📱 **RWD**: Grid z `auto-fit/auto-fill`, bez media query w JS.
 
-This UI kit is designed with ONE goal: **Make it easy for LLMs to build UIs quickly.**
-
-- ✅ Minimal props
-- ✅ Clear variants
-- ✅ No over-engineering
-- ✅ Native-ready (web → native with same API)
-- ✅ Predictable naming
-
-## Components
-
-### NativeText
-```svelte
-<NativeText variant="title">Title</NativeText>
-<NativeText variant="subtitle">Subtitle</NativeText>
-<NativeText variant="body">Body text</NativeText>
-<NativeText variant="small">Small text</NativeText>
+## Szybki start
+```bash
+pnpm i
+pnpm dev
 ```
+Aplikacja: http://localhost:5173 (domyślnie dla Vite).
 
-**Variants:** `title` | `subtitle` | `body` | `small`
+## Skrypty
+- `pnpm dev` — tryb deweloperski
+- `pnpm build` — build produkcyjny
+- `pnpm preview` — podgląd buildu
 
----
-
-### NativeButton
-```svelte
-<NativeButton>Default</NativeButton>
-<NativeButton size="small">Small</NativeButton>
+## Struktura
 ```
-
-**Props:**
-- `size`: `"default"` | `"small"`
-
----
-
-### NativeCard
-```svelte
-<NativeCard border="subtle" padding="default">
-  <div slot="header">Header content</div>
-  Main content
-  <div slot="footer">Footer content</div>
-</NativeCard>
-```
-
-**Props:**
-- `border`: `"none"` | `"subtle"` | `"strong"`
-- `padding`: `"default"` | `"small"`
-
-**Slots:**
-- `header` (optional)
-- default (required)
-- `footer` (optional)
-
----
-
-### NativeInput
-```svelte
-<NativeInput
-  type="email"
-  placeholder="you@example.com"
-  bind:value={email}
-/>
-```
-
-**Props:**
-- `value`: string
-- `placeholder`: string
-- `type`: string (default: "text")
-
----
-
-### NativeContainer
-```svelte
-<NativeContainer>
-  Content inside max-width container
-</NativeContainer>
-```
-
-No props. Just wraps content in max-width container.
-
----
-
-### NativeStack
-```svelte
-<NativeStack direction="vertical" gap="16px">
-  <div>Item 1</div>
-  <div>Item 2</div>
-</NativeStack>
-```
-
-**Props:**
-- `direction`: `"vertical"` | `"horizontal"`
-- `gap`: CSS gap value (default: "16px")
-
----
-
-## Usage
-
-```javascript
-import {
-  NativeText,
-  NativeButton,
-  NativeCard,
-  NativeInput,
-  NativeContainer,
-  NativeStack
-} from './lib';
-import './lib/styles.css';
+src/
+  lib/            # bazowe komponenty UI + styles.css
+  pages/          # przykładowe ekrany (Home, Get Started)
+  rich/           # zaawansowane UI (Navbar, ThemeToggle)
+  App.svelte      # router + shell
+  main.js         # bootstrap
 ```
 
 ## Theming
+- Domyślnie: dark
+- Light: `document.documentElement.setAttribute('data-theme', 'light')`
+- Zmieniasz kolory w `src/lib/styles.css` (sekcja `:root` i `[data-theme="light"]`).
 
-Toggle theme by adding `data-theme="light"` to `<html>` element:
+## Komponenty bazowe
+- **Text** – typografia z mapą rozmiarów i „system font stack”.
+- **Button** – `variant: solid | outline | ghost`, `size: sm | md | lg`.
+- **Card** – `variant: default | transparent`, `border: none | subtle | strong`.
+- **Badge** – semantyczne statusy: `success | warning | error | info | pending`.
+- **Grid** – `columns: number | "auto-fit" | "auto-fill"`, `minColumnWidth`, `gap`.
+- **Stack** – pion/poziom, kontrola odstępów.
+- **Input** – email/password/text z labelką.
 
-```javascript
-document.documentElement.setAttribute('data-theme', 'light');
+## Routing
+- `/` — Home (demo komponentów)
+- `/get-started` — Showcase z bogatszymi układami
+
+## Deployment
+Standardowy build Vite:
+```bash
+pnpm build
+# /dist gotowe do hostingu statycznego
 ```
 
-## Why "Native"?
-
-Component names start with "Native" because:
-1. **Future-proof**: Same API can work with React Native / Svelte Native
-2. **Clear intent**: These are foundational, native-feeling components
-3. **Namespace**: Avoid conflicts with other UI libraries
-
-## Design Principles
-
-1. **No hover states** - Mobile-first, works everywhere
-2. **Minimal variants** - Only what's absolutely needed
-3. **CSS variables** - Easy theming
-4. **Slots over props** - More flexible, less props
-5. **No complex state** - Keep it simple
-
-## Grid System
-
-Built on 8px grid (`--grid: 8px`):
-- Small padding: 16px (2 * grid)
-- Default padding: 24px (3 * grid)
-- Large gaps: 48px (6 * grid)
-
-## LLM Instructions
-
-When building UIs with this kit:
-1. Always wrap in `<NativeContainer>`
-2. Use `<NativeStack>` for layout
-3. Use `<NativeCard>` for content blocks
-4. Keep it simple - don't over-nest
-5. Use `gap` prop instead of margin/padding
-
-**Example:**
-```svelte
-<NativeContainer>
-  <NativeStack direction="vertical" gap="48px">
-    <NativeCard border="subtle">
-      <NativeText variant="title">Hello</NativeText>
-    </NativeCard>
-  </NativeStack>
-</NativeContainer>
-```
-
----
-
-**Built for speed. Designed for AI. Made for humans.**
-# refelt-design
+## Licencja
+MIT — używaj, modyfikuj, baw się dobrze.

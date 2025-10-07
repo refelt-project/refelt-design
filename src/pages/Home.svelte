@@ -19,14 +19,14 @@
     <!-- Hero -->
     <Stack gap="lg">
       <Text as="h1" size="xxl">
-        Design Systems<br>Made Simple
+        Build Apps & Dashboards<br>Ridiculously Fast
       </Text>
       <Text size="lg">
-        Beautifully crafted components built with precision. Accessible, customizable, and ready to use.
+        Refelt to zestaw szybkich, czystych komponentów Svelte. Komponuj ekrany, skaluj system designu, dostarczaj szybciej.
       </Text>
       <Stack direction="horizontal" gap="md">
         <Button>Get Started</Button>
-        <Button variant="outline" size="sm">Learn More</Button>
+        <Button variant="outline" size="sm">View Components</Button>
       </Stack>
     </Stack>
 
@@ -40,7 +40,7 @@
         </div>
         <Stack gap="sm">
           <Text size="xl">$45,231</Text>
-          <Text size="sm">+20.1% from last month</Text>
+          <Text size="sm">+20.1% vs last month</Text>
           <Badge variant="success">Active</Badge>
         </Stack>
       </Card>
@@ -52,7 +52,7 @@
         </div>
         <Stack gap="sm">
           <Text size="xl">+2,350</Text>
-          <Text size="sm">+180.1% from last month</Text>
+          <Text size="sm">+180.1% vs last month</Text>
           <Badge variant="info">Tracking</Badge>
         </Stack>
       </Card>
@@ -60,7 +60,7 @@
       <!-- Transparent Card -->
       <Card variant="transparent" padding="sm">
         <Stack gap="md">
-          <Text size="xs">TRANSPARENT DESIGN</Text>
+          <Text size="xs">EARLY ACCESS</Text>
           <Input
             id="email-home"
             label="Email Address"
