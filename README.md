@@ -268,4 +268,4 @@ Jeśli potrzebujesz custom styling:
 
 ---
 
-**Made with ❤️ for Choosewise**
+**Made with ❤️ for Refelt**

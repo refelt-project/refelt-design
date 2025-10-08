@@ -1,8 +1,11 @@
 <script>
     import { link } from 'svelte-spa-router';
+    import Logo from './Logo.svelte';
     
     const currentYear = new Date().getFullYear();
     
+    // ✅ CRITICAL FIX: Zmieniono nazwę z 'link' na 'footerLink'
+    // Kolizja: zmienna 'link' vs funkcja 'link' z svelte-spa-router
     const footerLinks = {
       product: [
         { label: 'Features', href: '/features' },
@@ -56,13 +59,7 @@
         
         <!-- Brand Section -->
         <div class="footer-brand">
-          <a href="/" use:link class="footer-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Refelt</span>
-          </a>
+          <Logo size="large" />
           <p class="footer-tagline">Building the future of interactive film experiences.</p>
           
           <!-- Social Links -->
@@ -89,9 +86,9 @@
           <div class="footer-links-column">
             <h3 class="footer-links-title">Product</h3>
             <ul class="footer-links-list">
-              {#each footerLinks.product as link}
+              {#each footerLinks.product as footerLink}
                 <li>
-                  <a href={link.href} use:link>{link.label}</a>
+                  <a href={footerLink.href} use:link>{footerLink.label}</a>
                 </li>
               {/each}
             </ul>
@@ -100,9 +97,9 @@
           <div class="footer-links-column">
             <h3 class="footer-links-title">Resources</h3>
             <ul class="footer-links-list">
-              {#each footerLinks.resources as link}
+              {#each footerLinks.resources as footerLink}
                 <li>
-                  <a href={link.href} use:link>{link.label}</a>
+                  <a href={footerLink.href} use:link>{footerLink.label}</a>
                 </li>
               {/each}
             </ul>
@@ -111,9 +108,9 @@
           <div class="footer-links-column">
             <h3 class="footer-links-title">Company</h3>
             <ul class="footer-links-list">
-              {#each footerLinks.company as link}
+              {#each footerLinks.company as footerLink}
                 <li>
-                  <a href={link.href} use:link>{link.label}</a>
+                  <a href={footerLink.href} use:link>{footerLink.label}</a>
                 </li>
               {/each}
             </ul>
@@ -122,9 +119,9 @@
           <div class="footer-links-column">
             <h3 class="footer-links-title">Legal</h3>
             <ul class="footer-links-list">
-              {#each footerLinks.legal as link}
+              {#each footerLinks.legal as footerLink}
                 <li>
-                  <a href={link.href} use:link>{link.label}</a>
+                  <a href={footerLink.href} use:link>{footerLink.label}</a>
                 </li>
               {/each}
             </ul>
@@ -136,7 +133,7 @@
       <!-- Bottom Section: Copyright -->
       <div class="footer-bottom">
         <p class="footer-copyright">
-          © {currentYear} Choosewise. All rights reserved.
+          © {currentYear} Refelt. All rights reserved.
         </p>
         <p class="footer-made-with">
           Made with 
@@ -178,22 +175,6 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-    }
-    
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--text);
-      text-decoration: none;
-      transition: opacity 0.2s;
-      width: fit-content;
-    }
-    
-    .footer-logo:hover {
-      opacity: 0.8;
     }
     
     .footer-tagline {

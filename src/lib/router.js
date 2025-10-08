@@ -1,9 +1,12 @@
 /**
  * Auto Router for Svelte (Next.js-style file-based routing)
  * Uses Vite's import.meta.glob for automatic page discovery
+ * 
+ * ✨ LAZY LOADING ENABLED - każdy page jest osobnym chunkiem
  */
 
-import NotFound from './NotFound.svelte'; // Lub twój komponent 404
+import { wrap } from 'svelte-spa-router/wrap';
+import NotFound from './NotFound.svelte';
 
 function filePathToRoute(filePath) {
   let route = filePath
@@ -29,22 +32,29 @@ function filePathToRoute(filePath) {
 }
 
 export function createRoutes() {
-  const pages = import.meta.glob('../pages/**/*.svelte', { eager: true });
+  // ✨ Lazy loading - bez { eager: true }
+  const pages = import.meta.glob('../pages/**/*.svelte');
 
   const routes = {};
   const routePaths = [];
 
   for (const path in pages) {
     const route = filePathToRoute(path);
-    routes[route] = pages[path].default;
+    
+    // ✨ CRITICAL: svelte-spa-router wymaga wrap() dla lazy loading
+    // wrap() przyjmuje obiekt z asyncComponent
+    routes[route] = wrap({
+      asyncComponent: () => pages[path]()
+    });
+    
     routePaths.push({ route, path });
   }
 
-  // WAŻNE: Dodaj wildcard na końcu dla 404
+  // 404 zostaje eager (mały komponent, używany często)
   routes['*'] = NotFound;
 
   if (import.meta.env.DEV) {
-    console.log('📍 Registered routes:', routePaths);
+    console.log('📍 Auto-generated routes (lazy-loaded):', routePaths);
   }
 
   return routes;

@@ -1,15 +1,14 @@
 <script>
   import { link, location } from 'svelte-spa-router';
   import ThemeToggle from './ThemeToggle.svelte';
+  import Logo from './Logo.svelte';
   
   $: currentPath = $location;
 </script>
 
 <nav class="navbar">
   <div class="nav-content">
-    <a href="/" use:link class="logo">
-      Refelt
-    </a>
+    <Logo size="medium" />
     
     <div class="nav-links">
       <a 
@@ -50,18 +49,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .logo {
-    font-weight: 600;
-    font-size: 18px;
-    color: var(--text);
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  
-  .logo:hover {
-    opacity: 0.8;
   }
   
   .nav-links {
