@@ -1,62 +1,70 @@
 <script>
     /**
-     * Checkbox Component - LLM-optimized with component--modifier pattern
+     * Radio Component - LLM-optimized with component--modifier pattern
      * 
      * PROPS (functional):
-     * - checked: boolean (bindable)
+     * - group: any (bindable - shared value across radio group)
+     * - value: any (this radio's value)
      * - disabled: boolean
      * - id: string
-     * - label: string (optional - renders label next to checkbox)
+     * - label: string (optional - renders label next to radio)
+     * - name: string (radio group name)
      * 
      * MODIFIERS (via class prop):
-     * - Size: checkbox--sm | checkbox--md | checkbox--lg
+     * - Size: radio--sm | radio--md | radio--lg
      * 
      * USAGE:
-     * <Checkbox bind:checked={value} label="Accept terms" />
-     * <Checkbox bind:checked={value} id="my-checkbox" class="checkbox--lg" />
+     * <Radio bind:group={selected} value="option1" name="choice" label="Option 1" />
+     * <Radio bind:group={selected} value="option2" name="choice" label="Option 2" />
      */
     
-    export let checked = false;
+    export let group = undefined;
+    export let value = undefined;
     export let disabled = false;
     export let id = "";
     export let label = "";
+    export let name = "";
   </script>
   
   {#if label}
-    <div class="checkbox-wrapper {$$props.class || ''}">
+    <div class="radio-wrapper {$$props.class || ''}">
       <input
         {id}
-        type="checkbox"
-        bind:checked
+        {name}
+        type="radio"
+        bind:group
+        {value}
         {disabled}
-        class="checkbox"
+        class="radio"
         on:change
       />
-      <label for={id} class="checkbox-label">
+      <label for={id} class="radio-label">
         {label}
       </label>
     </div>
   {:else}
     <input
       {id}
-      type="checkbox"
-      bind:checked
+      {name}
+      type="radio"
+      bind:group
+      {value}
       {disabled}
-      class="checkbox {$$props.class || ''}"
+      class="radio {$$props.class || ''}"
       on:change
     />
   {/if}
   
   <style>
     /* ============================================
-       BASE CHECKBOX
+       BASE RADIO
        ============================================ */
-    .checkbox {
+    .radio {
       appearance: none;
       width: 16px;
       height: 16px;
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      border-radius: 50%;
       background: var(--bg-elevated);
       cursor: pointer;
       transition: all var(--transition-base);
@@ -64,33 +72,33 @@
       flex-shrink: 0;
     }
   
-    .checkbox:hover:not(:disabled) {
+    .radio:hover:not(:disabled) {
       border-color: var(--accent);
     }
   
-    .checkbox:checked {
+    .radio:checked {
+      border-color: var(--accent);
       background: var(--accent);
-      border-color: var(--accent);
     }
   
-    .checkbox:checked::after {
+    .radio:checked::after {
       content: '';
       position: absolute;
-      left: 5px;
-      top: 2px;
-      width: 4px;
-      height: 8px;
-      border: solid var(--accent-fg);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-fg);
+      transform: translate(-50%, -50%);
     }
   
-    .checkbox:focus-visible {
+    .radio:focus-visible {
       outline: 3px solid color-mix(in oklch, var(--accent) 20%, transparent);
       outline-offset: 2px;
     }
   
-    .checkbox:disabled {
+    .radio:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
@@ -98,20 +106,20 @@
     /* ============================================
        WRAPPER WITH LABEL
        ============================================ */
-    .checkbox-wrapper {
+    .radio-wrapper {
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
   
-    .checkbox-label {
+    .radio-label {
       font-size: 14px;
       color: var(--text);
       cursor: pointer;
       user-select: none;
     }
   
-    .checkbox:disabled + .checkbox-label {
+    .radio:disabled + .radio-label {
       opacity: 0.5;
       cursor: not-allowed;
     }
@@ -119,65 +127,57 @@
     /* ============================================
        SIZE MODIFIERS (via class)
        ============================================ */
-    .checkbox.checkbox--sm {
+    .radio.radio--sm {
       width: 14px;
       height: 14px;
     }
   
-    .checkbox.checkbox--sm:checked::after {
-      left: 4px;
-      top: 1px;
-      width: 3px;
-      height: 7px;
+    .radio.radio--sm:checked::after {
+      width: 5px;
+      height: 5px;
     }
   
-    .checkbox.checkbox--md {
+    .radio.radio--md {
       width: 16px;
       height: 16px;
     }
   
-    .checkbox.checkbox--lg {
+    .radio.radio--lg {
       width: 20px;
       height: 20px;
     }
   
-    .checkbox.checkbox--lg:checked::after {
-      left: 7px;
-      top: 3px;
-      width: 5px;
-      height: 10px;
+    .radio.radio--lg:checked::after {
+      width: 8px;
+      height: 8px;
     }
   
     /* Size modifiers for wrapper */
-    .checkbox-wrapper.checkbox--sm .checkbox {
+    .radio-wrapper.radio--sm .radio {
       width: 14px;
       height: 14px;
     }
   
-    .checkbox-wrapper.checkbox--sm .checkbox:checked::after {
-      left: 4px;
-      top: 1px;
-      width: 3px;
-      height: 7px;
+    .radio-wrapper.radio--sm .radio:checked::after {
+      width: 5px;
+      height: 5px;
     }
   
-    .checkbox-wrapper.checkbox--sm .checkbox-label {
+    .radio-wrapper.radio--sm .radio-label {
       font-size: 13px;
     }
   
-    .checkbox-wrapper.checkbox--lg .checkbox {
+    .radio-wrapper.radio--lg .radio {
       width: 20px;
       height: 20px;
     }
   
-    .checkbox-wrapper.checkbox--lg .checkbox:checked::after {
-      left: 7px;
-      top: 3px;
-      width: 5px;
-      height: 10px;
+    .radio-wrapper.radio--lg .radio:checked::after {
+      width: 8px;
+      height: 8px;
     }
   
-    .checkbox-wrapper.checkbox--lg .checkbox-label {
+    .radio-wrapper.radio--lg .radio-label {
       font-size: 15px;
     }
   </style>

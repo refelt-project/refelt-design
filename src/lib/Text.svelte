@@ -7,12 +7,13 @@
    * 
    * MODIFIERS (via class prop):
    * - Size: text--xs | text--sm | text--base | text--lg | text--xl | text--xxl
-   * - Style: text--muted | text--subtle | text--bold
+   * - Style: text--muted | text--subtle | text--bold | text--error
    * 
    * USAGE:
    * <Text>Default paragraph</Text>
    * <Text class="text--lg text--muted">Large muted text</Text>
    * <Text as="h2" class="text--xl text--bold">Heading</Text>
+   * <Text class="text--sm text--error">Error message</Text>
    */
   
   export let as = "p";
@@ -93,5 +94,9 @@
 
   .text.text--bold {
     font-weight: 600;
+  }
+
+  .text.text--error {
+    color: var(--destructive);
   }
 </style>

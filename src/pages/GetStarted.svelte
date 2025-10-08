@@ -8,7 +8,7 @@
     Container,
     Stack,
     Grid
-  } from '../lib';
+  } from '@/lib';
   
   // Import only the icons we need
   import { Sparkles, DollarSign, Users } from 'lucide-svelte';

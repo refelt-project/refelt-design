@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import path from 'path'
 
 export default defineConfig({
   plugins: [
@@ -14,6 +15,13 @@ export default defineConfig({
       }
     })
   ],
+  
+  // ✨ NOWE: Path aliases
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
+  },
   
   build: {
     // Optymalizacja bundle
