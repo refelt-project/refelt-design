@@ -10,7 +10,6 @@
     Grid,
     Label,
     Separator,
-    Radio,
     Switch,
   } from "@/uikit";
   import PaymentForm from "../parts/PaymentForm.svelte";
@@ -123,27 +122,15 @@
             <Text class="text--sm text--muted">You can add more later.</Text>
           </Stack>
 
-          <div class="number-stepper">
-            <Input
-              id="gpu-count"
-              type="number"
-              bind:value={gpuCount}
-              min={1}
-              step={1}
-              class="input--md"
-              style="font-variant-numeric:tabular-nums;"
-            />
-            <Button
-              variant="outline"
-              class="btn--sm"
-              on:click={() => (gpuCount = Math.max(1, (gpuCount ?? 0) - 1))}
-              aria-label="Decrease">−</Button>
-            <Button
-              variant="outline"
-              class="btn--sm"
-              on:click={() => (gpuCount = (gpuCount ?? 0) + 1)}
-              aria-label="Increase">+</Button>
-          </div>
+          <!-- teraz korzystamy z wbudowanych przycisków +/- w Input type="number" -->
+          <Input
+            id="gpu-count"
+            type="number"
+            bind:value={gpuCount}
+            min={1}
+            step={1}
+            class="input--md"
+          />
         </Stack>
 
         <Separator />
@@ -159,10 +146,5 @@
 </Container>
 
 <style>
-  .number-stepper {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    width: 100%;
-  }
+  /* usunięto number-stepper – niepotrzebny po migracji na shadcn-like Input[number] */
 </style>
