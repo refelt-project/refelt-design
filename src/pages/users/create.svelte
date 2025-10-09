@@ -1,5 +1,5 @@
 <script>
-    import { Container, Stack, Text, Card, Input, Button } from '@/lib';
+    import { Container, Stack, Text, Card, Input, Button } from '@/uikit';
     import { pop } from 'svelte-spa-router';
   
     let name = '';

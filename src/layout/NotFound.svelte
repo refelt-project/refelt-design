@@ -1,5 +1,5 @@
 <script>
-    import { Container, Stack, Text, Button } from '@/lib';
+    import { Container, Stack, Text, Button } from '@/uikit';
     import { push } from 'svelte-spa-router';
   </script>
   

@@ -1,8 +1,8 @@
 <script>
     import Router from "svelte-spa-router";
-    import { Navbar, Footer } from './rich';
+    import { Navbar, Footer } from './layout';
     import { createRoutes } from '@/lib/router';
-    import "@/lib/styles.css";
+    import "@/uikit/styles.css";
   
     // Auto-generated routes from pages/ folder
     const routes = createRoutes();

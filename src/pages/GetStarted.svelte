@@ -8,9 +8,8 @@
     Container,
     Stack,
     Grid,
-    Label,
     Separator
-  } from '@/lib';
+  } from '@/uikit';
   
   // Import only the icons we need
   import { Sparkles, DollarSign, Users } from 'lucide-svelte';

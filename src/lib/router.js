@@ -6,7 +6,7 @@
  */
 
 import { wrap } from 'svelte-spa-router/wrap';
-import NotFound from './NotFound.svelte';
+import {NotFound} from '@/layout';
 
 function filePathToRoute(filePath) {
   let route = filePath
