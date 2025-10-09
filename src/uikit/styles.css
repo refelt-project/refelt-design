@@ -38,9 +38,9 @@
    /* ============================================
       GRID SYSTEM - Responsive Presets
       ============================================ */
-   --grid-min-col-sm: 240px;
-   --grid-min-col-md: 280px;
-   --grid-min-col-lg: 320px;
+      --breakpoint-sm: 640px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 1024px;
    
    /* ============================================
       BORDER RADIUS SYSTEM (shadcn/ui compatible)

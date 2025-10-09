@@ -1,4 +1,3 @@
-<!-- src/pages/Home.svelte -->
 <script>
   import {
     Text,
@@ -13,11 +12,7 @@
     Switch,
   } from "@/uikit";
   import PaymentForm from "../parts/PaymentForm.svelte";
-
-  // używamy wyniesionych komponentów rich
   import { RadioCard, ColorPicker, ItemCard, ItemLink } from "@/rich";
-
-  // ikony
   import { CircleCheck, ArrowRight } from "lucide-svelte";
 
   let tintingEnabled = true;
@@ -33,7 +28,8 @@
       <Text class="text--base text--muted">Component--modifier pattern examples</Text>
     </Stack>
 
-    <Grid columns={2} class="grid--gap-lg">
+    <!-- Przypadek A: desktop 2 kolumny, mobile 1 -->
+    <Grid columns={2} class="grid--gap-lg grid--md-1">
       <Card>
         <PaymentForm />
       </Card>
@@ -46,7 +42,6 @@
 
         <Separator />
 
-        <!-- Two-factor authentication (ItemCard) -->
         <ItemCard>
           <Stack class="stack--gap-sm">
             <Text class="text--base text--bold">Two-factor authentication</Text>
@@ -57,7 +52,6 @@
           </svelte:fragment>
         </ItemCard>
 
-        <!-- Verified info (ItemLink) -->
         <ItemLink href="#">
           <svelte:fragment slot="leading">
             <CircleCheck size={20} strokeWidth={2} />
@@ -70,7 +64,6 @@
 
         <Separator />
 
-        <!-- Compute Environment -->
         <Stack class="stack--gap-md">
           <Stack class="stack--gap-sm">
             <Text class="text--base text--bold">Compute Environment</Text>
@@ -99,13 +92,11 @@
 
         <Separator />
 
-        <!-- Accent Color -->
         <Stack class="stack--gap-md">
           <Stack class="stack--gap-sm">
             <Text class="text--base text--bold">Accent Color</Text>
             <Text class="text--sm text--muted">Select the accent color.</Text>
           </Stack>
-
           <ColorPicker
             name="accent-color"
             bind:group={accentColor}
@@ -115,14 +106,12 @@
 
         <Separator />
 
-        <!-- Number of GPUs -->
         <Stack class="stack--gap-md">
           <Stack class="stack--gap-sm">
             <Label for="gpu-count">Number of GPUs</Label>
             <Text class="text--sm text--muted">You can add more later.</Text>
           </Stack>
 
-          <!-- teraz korzystamy z wbudowanych przycisków +/- w Input type="number" -->
           <Input
             id="gpu-count"
             type="number"
@@ -135,16 +124,22 @@
 
         <Separator />
 
-        <!-- Switch Toggle -->
         <Stack class="stack--gap-sm">
           <Switch bind:checked={tintingEnabled} id="tinting" label="Wallpaper Tinting" />
           <Text class="text--sm text--muted">Allow the wallpaper to be tinted.</Text>
         </Stack>
       </Stack>
     </Grid>
+
+    <!-- Przypadek B: desktop 3 kolumny, tablet 2, mobile 1 -->
+    <Grid columns={3} class="grid--gap-lg grid--lg-2 grid--md-1">
+      <Card><Text>Card 1</Text></Card>
+      <Card><Text>Card 2</Text></Card>
+      <Card><Text>Card 3</Text></Card>
+    </Grid>
   </Stack>
 </Container>
 
 <style>
-  /* usunięto number-stepper – niepotrzebny po migracji na shadcn-like Input[number] */
+  /* brak lokalnych media queries — wszystko w UIKit Grid */
 </style>
