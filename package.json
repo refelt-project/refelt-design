@@ -2,21 +2,85 @@
   "name": "svelte-native-ui",
   "version": "1.0.0",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
+  "author": "Choosewise Team",
+  "license": "MIT",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "svelte": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "sideEffects": false,
+
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "svelte": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./uikit": {
+      "types": "./dist/types/uikit/index.d.ts",
+      "svelte": "./dist/uikit/index.js",
+      "import": "./dist/uikit/index.js",
+      "default": "./dist/uikit/index.js"
+    },
+    "./uikit/*": {
+      "svelte": "./dist/uikit/*",
+      "import": "./dist/uikit/*",
+      "default": "./dist/uikit/*"
+    },
+    "./rich": {
+      "types": "./dist/types/rich/index.d.ts",
+      "svelte": "./dist/rich/index.js",
+      "import": "./dist/rich/index.js",
+      "default": "./dist/rich/index.js"
+    },
+    "./rich/*": {
+      "svelte": "./dist/rich/*",
+      "import": "./dist/rich/*",
+      "default": "./dist/rich/*"
+    },
+    "./package.json": "./package.json"
+  },
+
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "svelte-package && vite build",
+    "preview": "vite preview",
+    "package": "svelte-package"
   },
+
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@sveltejs/package": "^2.3.0",
     "svelte": "^4.2.0",
-    "terser": "^5.44.0",
     "vite": "^5.0.0",
-    "vite-plugin-html": "^3.2.2"
+    "vite-plugin-html": "^3.2.2",
+    "terser": "^5.44.0"
   },
+
   "dependencies": {
     "lucide-svelte": "^0.545.0",
     "svelte-spa-router": "^4.0.1"
-  }
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/choosewise/svelte-native-ui"
+  },
+  "homepage": "https://www.npmjs.com/package/svelte-native-ui",
+  "keywords": [
+    "svelte",
+    "ui",
+    "components",
+    "design-system",
+    "native-ui",
+    "choosewise"
+  ]
 }
