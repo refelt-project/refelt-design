@@ -1,6 +1,6 @@
 {
   "name": "svelte-native-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -10,7 +10,6 @@
   "svelte": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
   "sideEffects": false,
-
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -42,20 +41,17 @@
     },
     "./package.json": "./package.json"
   },
-
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
-
   "scripts": {
     "dev": "vite",
     "build": "svelte-package && vite build",
     "preview": "vite preview",
     "package": "svelte-package"
   },
-
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@sveltejs/package": "^2.3.0",
@@ -64,12 +60,10 @@
     "vite-plugin-html": "^3.2.2",
     "terser": "^5.44.0"
   },
-
   "dependencies": {
     "lucide-svelte": "^0.545.0",
     "svelte-spa-router": "^4.0.1"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/choosewise/svelte-native-ui"
