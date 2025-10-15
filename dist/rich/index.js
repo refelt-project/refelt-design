@@ -1,3 +1,4 @@
+// Export all rich components
 export { default as ThemeToggle } from './ThemeToggle.svelte';
 export { default as RadioCard } from './RadioCard.svelte';
 export { default as ColorPicker } from './ColorPicker.svelte';
