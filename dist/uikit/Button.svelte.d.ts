@@ -1,39 +1,49 @@
-/** @typedef {typeof __propDef.props}  ButtonProps */
-/** @typedef {typeof __propDef.events}  ButtonEvents */
-/** @typedef {typeof __propDef.slots}  ButtonSlots */
-export default class Button extends SvelteComponent<{
+export default Button;
+type Button = SvelteComponent<$$__sveltets_2_PropsWithChildren<{
     [x: string]: any;
     disabled?: boolean | undefined;
     variant?: string | undefined;
     type?: string | undefined;
 }, {
+    default: {};
+}>, {
     click: PointerEvent;
 } & {
     [evt: string]: CustomEvent<any>;
 }, {
     default: {};
-}> {
-}
-export type ButtonProps = typeof __propDef.props;
-export type ButtonEvents = typeof __propDef.events;
-export type ButtonSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        [x: string]: any;
-        disabled?: boolean | undefined;
-        variant?: string | undefined;
-        type?: string | undefined;
-    };
-    events: {
-        click: PointerEvent;
-    } & {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {
-        default: {};
-    };
-    exports?: undefined;
-    bindings?: undefined;
+}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const Button: $$__sveltets_2_IsomorphicComponent<$$__sveltets_2_PropsWithChildren<{
+    [x: string]: any;
+    disabled?: boolean | undefined;
+    variant?: string | undefined;
+    type?: string | undefined;
+}, {
+    default: {};
+}>, {
+    click: PointerEvent;
+} & {
+    [evt: string]: CustomEvent<any>;
+}, {
+    default: {};
+}, {}, string>;
+type $$__sveltets_2_PropsWithChildren<Props, Slots> = Props & (Slots extends {
+    default: any;
+} ? Props extends Record<string, never> ? any : {
+    children?: any;
+} : {});
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}

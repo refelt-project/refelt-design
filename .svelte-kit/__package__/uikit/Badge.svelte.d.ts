@@ -1,31 +1,41 @@
-/** @typedef {typeof __propDef.props}  BadgeProps */
-/** @typedef {typeof __propDef.events}  BadgeEvents */
-/** @typedef {typeof __propDef.slots}  BadgeSlots */
-export default class Badge extends SvelteComponent<{
+export default Badge;
+type Badge = SvelteComponent<$$__sveltets_2_PropsWithChildren<{
     [x: string]: any;
     variant?: string | undefined;
 }, {
+    default: {};
+}>, {
     [evt: string]: CustomEvent<any>;
 }, {
     default: {};
-}> {
-}
-export type BadgeProps = typeof __propDef.props;
-export type BadgeEvents = typeof __propDef.events;
-export type BadgeSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        [x: string]: any;
-        variant?: string | undefined;
-    };
-    events: {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {
-        default: {};
-    };
-    exports?: undefined;
-    bindings?: undefined;
+}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const Badge: $$__sveltets_2_IsomorphicComponent<$$__sveltets_2_PropsWithChildren<{
+    [x: string]: any;
+    variant?: string | undefined;
+}, {
+    default: {};
+}>, {
+    [evt: string]: CustomEvent<any>;
+}, {
+    default: {};
+}, {}, string>;
+type $$__sveltets_2_PropsWithChildren<Props, Slots> = Props & (Slots extends {
+    default: any;
+} ? Props extends Record<string, never> ? any : {
+    children?: any;
+} : {});
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}
