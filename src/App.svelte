@@ -2,7 +2,7 @@
     import Router from "svelte-spa-router";
     import { Navbar, Footer } from './layout';
     import { createRoutes } from '@/lib/router';
-    import "@/uikit/styles.css";
+    import "@/lib/uikit/styles.css";
   
     // Auto-generated routes from pages/ folder
     const routes = createRoutes();

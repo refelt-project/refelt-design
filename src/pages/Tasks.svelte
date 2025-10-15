@@ -12,7 +12,7 @@
       Badge,
       Switch,
       Label
-    } from "@/uikit";
+    } from "@/lib/uikit";
     import { push } from "svelte-spa-router";
     import { Plus, Search, Filter, MoreVertical } from "lucide-svelte";
   

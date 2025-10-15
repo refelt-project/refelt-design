@@ -1,6 +1,6 @@
 <script>
   import { link, location } from 'svelte-spa-router';
-  import {ThemeToggle} from '@/rich';
+  import {ThemeToggle} from '@/lib/rich';
   import Logo from './Logo.svelte';
   
   $: currentPath = $location;

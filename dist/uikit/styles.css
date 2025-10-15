@@ -1,0 +1,201 @@
+/* Global Native UI Styles - OPTIMIZED FOR LLM */
+/* Pattern: component--modifier (e.g., btn--lg, text--muted) */
+
+:root {
+   /* ============================================
+      SPACING SYSTEM - 8px GRID
+      ============================================ */
+   --grid: 8px;
+   
+   /* Spacing Scale - simplified, no calc() */
+   --space-sm: 8px;
+   --space-md: 16px;
+   --space-lg: 24px;
+   --space-xl: 48px;
+   --space-xxl: 64px;
+   
+   /* ============================================
+      TYPOGRAPHY SYSTEM
+      ============================================ */
+   --font-size-xs: 12px;
+   --font-size-sm: 14px;
+   --font-size-base: 16px;
+   --font-size-lg: 18px;
+   --font-size-xl: 20px;
+   --font-size-xxl: 36px;
+   
+   --line-height-tight: 1.25;
+   --line-height-normal: 1.5;
+   --line-height-relaxed: 1.75;
+   
+   /* ============================================
+      BREAKPOINTS (Tailwind-compatible)
+      ============================================ */
+   --breakpoint-sm: 640px;
+   --breakpoint-md: 768px;
+   --breakpoint-lg: 1024px;
+   
+   /* ============================================
+      GRID SYSTEM - Responsive Presets
+      ============================================ */
+      --breakpoint-sm: 640px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 1024px;
+   
+   /* ============================================
+      BORDER RADIUS SYSTEM (shadcn/ui compatible)
+      ============================================ */
+   --radius-sm: 4px;
+   --radius-md: 8px;
+   --radius-lg: 10px;
+   --radius-full: 999px;
+   
+   /* ============================================
+      SHADOWS SYSTEM
+      ============================================ */
+   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+   --shadow-md: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+   --shadow-lg: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+   
+   /* ============================================
+      SHADCN/UI OKLCH COLORS - Dark Theme
+      ============================================ */
+   --bg: oklch(0.145 0 0);
+   --bg-elevated: oklch(0.18 0 0);
+   --bg-card: oklch(0.16 0 0);
+   --border: oklch(0.25 0 0);
+   --border-strong: oklch(0.35 0 0);
+   --text: oklch(0.95 0 0);
+   --text-muted: oklch(0.556 0 0);
+   --text-subtle: oklch(0.5 0 0);
+   
+   /* PRIMARY = WHITE (for default buttons on dark bg) */
+   --primary: oklch(0.95 0 0);
+   --primary-fg: oklch(0.145 0 0);
+   
+   /* SECONDARY = Gray */
+   --secondary: oklch(0.25 0 0);
+   --secondary-fg: oklch(0.95 0 0);
+   
+   /* ACCENT = Blue */
+   --accent: oklch(0.488 0.243 264.38);
+   --accent-fg: oklch(0.97 0 0);
+   
+   /* DESTRUCTIVE = Red */
+   --destructive: oklch(0.577 0.245 27.325);
+   --destructive-fg: oklch(0.97 0 0);
+   
+   /* ============================================
+      STATUS/SEMANTIC COLORS (Dark Theme)
+      ============================================ */
+   --status-success: #86efac;
+   --status-success-bg: #166534;
+   --status-warning: #fde047;
+   --status-warning-bg: #713f12;
+   --status-error: #fca5a5;
+   --status-error-bg: #7f1d1d;
+   --status-info: #93c5fd;
+   --status-info-bg: #1e3a8a;
+   --status-pending: #fde047;
+   --status-pending-bg: #713f12;
+   
+   /* ============================================
+      TRANSITIONS
+      ============================================ */
+   --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+ 
+ /* ============================================
+    LIGHT THEME OVERRIDES - OKLCH
+    ============================================ */
+ [data-theme="light"] {
+   --bg: oklch(1 0 0);
+   --bg-elevated: oklch(0.98 0 0);
+   --bg-card: oklch(0.99 0 0);
+   --border: oklch(0.922 0 0);
+   --border-strong: oklch(0.85 0 0);
+   --text: oklch(0.145 0 0);
+   --text-muted: oklch(0.556 0 0);
+   --text-subtle: oklch(0.65 0 0);
+   
+   --primary: oklch(0.205 0 0);
+   --primary-fg: oklch(0.985 0 0);
+   
+   --secondary: oklch(0.97 0 0);
+   --secondary-fg: oklch(0.205 0 0);
+   
+   --accent: oklch(0.488 0.243 264.38);
+   --accent-fg: oklch(0.97 0 0);
+   
+   --destructive: oklch(0.577 0.245 27.325);
+   --destructive-fg: oklch(0.97 0 0);
+   
+   /* Status/Semantic Colors - Light Theme */
+   --status-success: #166534;
+   --status-success-bg: #dcfce7;
+   --status-warning: #713f12;
+   --status-warning-bg: #fef9c3;
+   --status-error: #991b1b;
+   --status-error-bg: #fee2e2;
+   --status-info: #1e40af;
+   --status-info-bg: #dbeafe;
+   --status-pending: #713f12;
+   --status-pending-bg: #fef9c3;
+   
+   /* Shadows - Light Theme */
+   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+ }
+ 
+ /* ============================================
+    BODY - ADVANCED TYPOGRAPHY
+    ============================================ */
+ body {
+   /* ADVANCED TYPOGRAPHY FEATURES */
+   font-feature-settings: 
+     "kern" 1,
+     "liga" 1,
+     "calt" 1,
+     "cv01" 1,
+     "cv02" 1,
+     "cv03" 1,
+     "cv04" 1,
+     "zero" 1,
+     "ss01" 1,
+     "ss02" 1;
+   
+   font-optical-sizing: auto;
+   font-variant-numeric: proportional-nums;
+   
+   /* CRYSTAL CLEAR RENDERING */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   font-synthesis: none;
+   text-rendering: optimizeLegibility;
+   
+   transition: background var(--transition-slow);
+ }
+ 
+ /* ============================================
+    GLOBAL RWD UTILITIES
+    ============================================ */
+ @media (max-width: 640px) {
+   :global(.span-2),
+   :global(.span-3),
+   :global([class*="span-"]) {
+     grid-column: span 1 !important;
+   }
+ }
+ 
+ /* ============================================
+    ACCESSIBILITY - REDUCED MOTION
+    ============================================ */
+ @media (prefers-reduced-motion: reduce) {
+   * {
+     animation-duration: 0.01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: 0.01ms !important;
+   }
+ }
