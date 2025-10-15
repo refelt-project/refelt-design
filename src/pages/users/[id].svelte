@@ -1,5 +1,5 @@
 <script>
-    import { Container, Stack, Text, Card, Button } from '@/uikit';
+    import { Container, Stack, Text, Card, Button } from '@/lib/uikit';
     import { pop } from 'svelte-spa-router';
   
     // svelte-spa-router automatically provides params

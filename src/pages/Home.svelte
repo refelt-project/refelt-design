@@ -10,9 +10,9 @@
     Label,
     Separator,
     Switch,
-  } from "@/uikit";
+  } from "@/lib/uikit";
   import PaymentForm from "../parts/PaymentForm.svelte";
-  import { RadioCard, ColorPicker, ItemCard, ItemLink } from "@/rich";
+  import { RadioCard, ColorPicker, ItemCard, ItemLink } from "@/lib/rich";
   import { CircleCheck, ArrowRight } from "lucide-svelte";
 
   let tintingEnabled = true;

@@ -9,7 +9,7 @@
       Textarea,
       Label,
       Separator
-    } from '@/uikit';
+    } from '@/lib/uikit';
   
     // Form state
     let cardName = '';

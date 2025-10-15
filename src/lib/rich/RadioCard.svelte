@@ -14,7 +14,7 @@
      * MODYFIKATORY (class):
      * - radio-card--sm | --md | --lg
      */
-    import { Stack, Text, Radio } from '@/uikit';
+    import { Stack, Text, Radio } from '@/lib/uikit';
   
     export let group = undefined;
     export let value = undefined;
