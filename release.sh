@@ -10,7 +10,8 @@ npm version "$BUMP_TYPE" --no-git-tag-version
 
 VERSION=$(node -p "require('./package.json').version")
 
-# 🏗️ Build projektu (bezpośrednio przez npx)
+# 🏗️ Build projektu - NAJPIERW svelte-package, POTEM vite build
+npx svelte-package
 npx vite build
 
 # 💾 Commit + tag jeśli to repo gitowe

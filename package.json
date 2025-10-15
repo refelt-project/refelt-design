@@ -1,6 +1,6 @@
 {
   "name": "refelt-design",
-  "version": "1.0.15",
+  "version": "1.0.18",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -57,6 +57,7 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "svelte": "^4.2.0",
     "terser": "^5.44.0",
+    "typescript": "^5.9.3",
     "vite": "^5.0.0",
     "vite-plugin-html": "^3.2.2"
   },
