@@ -1,6 +1,6 @@
 {
   "name": "refelt-design",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -77,5 +77,8 @@
     "design-system",
     "native-ui",
     "choosewise"
-  ]
+  ],
+  "peerDependencies": {
+    "svelte": "^4.0.0 || ^5.0.0"
+  }
 }
