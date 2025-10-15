@@ -42,6 +42,16 @@
     "./styles.css": "./dist/uikit/styles.css",
     "./package.json": "./package.json"
   },
+  "typesVersions": {
+    "*": {
+      "uikit": [
+        "dist/uikit/index.d.ts"
+      ],
+      "rich": [
+        "dist/rich/index.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist",
     "README.md",
@@ -66,8 +76,9 @@
   "scripts": {
     "dev": "vite",
     "package": "svelte-package",
-    "postpackage": "node scripts/gen-dts.mjs",
+    "postpackage": "node scripts/gen-dts.mjs && node scripts/assert-dts.mjs",
     "build": "yarn package && vite build",
+    "prepublishOnly": "yarn package && node scripts/gen-dts.mjs && node scripts/assert-dts.mjs",
     "preview": "vite preview"
   },
   "repository": {
