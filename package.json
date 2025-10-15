@@ -1,16 +1,14 @@
 {
   "name": "refelt-design",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
   "type": "module",
-
   "svelte": "./dist/index.js",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -43,13 +41,11 @@
     "./styles.css": "./dist/uikit/styles.css",
     "./package.json": "./package.json"
   },
-
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
-
   "peerDependencies": {
     "svelte": "^4.0.0 || ^5.0.0"
   },
@@ -62,26 +58,27 @@
     "typescript": "^5.6.3",
     "vite": "^5.0.0"
   },
-
-  
-    "scripts": {
-      "dev": "vite",
-      "build": "svelte-package",
-      "prepack": "yarn build && node scripts/gen-dts.mjs && (cp -f src/lib/uikit/styles.css dist/uikit/styles.css || true)",
-      "release": "npm version patch && npm publish --access public",
-      "release:all": "bash scripts/release-all.sh"
-    },
-  
-  
-
+  "scripts": {
+    "dev": "vite",
+    "build": "svelte-package",
+    "prepack": "yarn build && node scripts/gen-dts.mjs && (cp -f src/lib/uikit/styles.css dist/uikit/styles.css || true)",
+    "release": "npm version patch && npm publish --access public",
+    "release:all": "bash scripts/release-all.sh"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/refelt-project/refelt-design.git"
   },
   "homepage": "https://github.com/refelt-project/refelt-design",
-  "keywords": ["svelte", "ui", "components", "design-system", "native-ui", "choosewise"]
+  "keywords": [
+    "svelte",
+    "ui",
+    "components",
+    "design-system",
+    "native-ui",
+    "choosewise"
+  ]
 }
