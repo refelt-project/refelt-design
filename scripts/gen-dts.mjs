@@ -59,7 +59,7 @@ async function main() {
   await write('dist/rich/index.d.ts', richDts);
   await write('dist/index.d.ts', rootDts);
 
-  console.log('✔ d.ts generated: dist/index.d.ts, dist/uikit/index.d.ts, dist/rich/index.d.ts');
+  console.log('✔ d.ts generated');
 }
 
 main().catch((e) => {

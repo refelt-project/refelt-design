@@ -1,15 +1,16 @@
 {
   "name": "refelt-design",
-  "version": "1.1.8",
+  "version": "1.1.6",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
   "type": "module",
+
   "svelte": "./dist/index.js",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "sideEffects": false,
+
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -42,54 +43,45 @@
     "./styles.css": "./dist/uikit/styles.css",
     "./package.json": "./package.json"
   },
-  "typesVersions": {
-    "*": {
-      "uikit": [
-        "dist/uikit/index.d.ts"
-      ],
-      "rich": [
-        "dist/rich/index.d.ts"
-      ]
-    }
-  },
+
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
+
   "peerDependencies": {
-    "svelte": "^4.0.0"
+    "svelte": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
-    "lucide-svelte": "^0.545.0",
-    "svelte": "^5.40.1",
-    "svelte-spa-router": "^4.0.1"
+    "lucide-svelte": "^0.545.0"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.5.4",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "terser": "^5.44.0",
     "typescript": "^5.6.3",
-    "vite": "^5.0.0",
-    "vite-plugin-html": "^3.2.2"
+    "vite": "^5.0.0"
   },
-  "scripts": {
-    "dev": "vite",
-    "build": "rm -rf dist && svelte-package && node scripts/gen-dts.mjs && node scripts/assert-dts.mjs && vite build",
-    "release": "node scripts/release.mjs",
-    "prepublishOnly": "yarn build"
+
+  
+    "scripts": {
+      "dev": "vite",
+      "build": "svelte-package",
+      "prepack": "yarn build && node scripts/gen-dts.mjs && (cp -f src/lib/uikit/styles.css dist/uikit/styles.css || true)",
+      "release": "npm version patch && npm publish --access public",
+      "release:all": "bash scripts/release-all.sh"
+    },
+  
+  
+
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/refelt-project/refelt-design.git"
   },
   "homepage": "https://github.com/refelt-project/refelt-design",
-  "keywords": [
-    "svelte",
-    "ui",
-    "components",
-    "design-system",
-    "native-ui",
-    "choosewise"
-  ]
+  "keywords": ["svelte", "ui", "components", "design-system", "native-ui", "choosewise"]
 }
