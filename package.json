@@ -1,8 +1,8 @@
 {
   "name": "refelt-design",
-  "version": "1.0.28",
+  "version": "1.0.30",
   "type": "module",
-  "description": "Refelt Design System - Svelte UI Components with component--modifier pattern",
+  "description": "Refelt Design System - Svelte UI Components",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -33,7 +33,8 @@
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
-    "svelte": "^4.0.0 || ^5.0.0"
+    "svelte": "^4.0.0 || ^5.0.0",
+    "lucide-svelte": "^0.263.0"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.0.0",
