@@ -1,6 +1,6 @@
 {
-  "name": "svelte-native-ui",
-  "version": "1.0.1",
+  "name": "refelt-design",
+  "version": "1.0.7",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -66,9 +66,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/choosewise/svelte-native-ui"
+    "url": "https://github.com/refelt-project/refelt-design"
   },
-  "homepage": "https://www.npmjs.com/package/svelte-native-ui",
+  "homepage": "https://github.com/refelt-project/refelt-design",
   "keywords": [
     "svelte",
     "ui",
