@@ -1,6 +1,6 @@
 {
   "name": "refelt-design",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -75,11 +75,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "package": "svelte-package",
-    "postpackage": "node scripts/gen-dts.mjs && node scripts/assert-dts.mjs",
-    "build": "yarn package && vite build",
-    "prepublishOnly": "yarn package && node scripts/gen-dts.mjs && node scripts/assert-dts.mjs",
-    "preview": "vite preview"
+    "build": "rm -rf dist && svelte-package && node scripts/gen-dts.mjs && node scripts/assert-dts.mjs && vite build",
+    "release": "node scripts/release.mjs",
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
