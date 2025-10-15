@@ -2,7 +2,6 @@
 import { mkdir, writeFile, copyFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import fs from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -16,13 +15,11 @@ async function write(p, content) {
 }
 
 async function main() {
-  // skopiuj CSS do dist (nie krzycz, gdy go nie ma)
   try {
     await ensureDir('dist/uikit');
     await copyFile('src/lib/uikit/styles.css', 'dist/uikit/styles.css');
   } catch {}
 
-  // barrel d.ts dla subpathów – TS będzie je widział
   const uikitDts = [
     "export { default as Text } from './Text.svelte';",
     "export { default as Button } from './Button.svelte';",
