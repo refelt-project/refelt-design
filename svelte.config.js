@@ -4,10 +4,9 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
   preprocess: vitePreprocess(),
   
-  kit: {
-    files: {
-      lib: 'src/lib'
-    }
+  // BEZ kit - to jest biblioteka, nie SvelteKit app
+  compilerOptions: {
+    // Svelte 5 opcje
   }
 };
 

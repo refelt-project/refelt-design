@@ -14,7 +14,7 @@
    * MODYFIKATORY (class):
    * - radio-card--sm | --md | --lg
    */
-  import { Stack, Text, Radio } from '../uikit/index.js';
+   import { Stack, Text, Radio } from '$lib/uikit/index.js';
 
   /**
    * @type {any}
