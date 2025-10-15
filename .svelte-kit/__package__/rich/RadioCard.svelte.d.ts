@@ -4,12 +4,12 @@
 export default class RadioCard extends SvelteComponent<{
     [x: string]: any;
     group?: any;
-    name?: string | undefined;
-    disabled?: boolean | undefined;
     value?: any;
+    name?: string | undefined;
     title?: string | undefined;
     description?: string | undefined;
     id?: string | undefined;
+    disabled?: boolean | undefined;
 }, {
     [evt: string]: CustomEvent<any>;
 }, {
@@ -24,12 +24,12 @@ declare const __propDef: {
     props: {
         [x: string]: any;
         group?: any;
-        name?: string | undefined;
-        disabled?: boolean | undefined;
         value?: any;
+        name?: string | undefined;
         title?: string | undefined;
         description?: string | undefined;
         id?: string | undefined;
+        disabled?: boolean | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

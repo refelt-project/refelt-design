@@ -3,10 +3,10 @@
 /** @typedef {typeof __propDef.slots}  TextareaSlots */
 export default class Textarea extends SvelteComponent<{
     [x: string]: any;
-    disabled?: boolean | undefined;
-    label?: string | undefined;
     value?: string | undefined;
     id?: string | undefined;
+    disabled?: boolean | undefined;
+    label?: string | undefined;
     rows?: number | undefined;
     placeholder?: string | undefined;
 }, {
@@ -24,10 +24,10 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        disabled?: boolean | undefined;
-        label?: string | undefined;
         value?: string | undefined;
         id?: string | undefined;
+        disabled?: boolean | undefined;
+        label?: string | undefined;
         rows?: number | undefined;
         placeholder?: string | undefined;
     };

@@ -1,84 +1,43 @@
 {
   "name": "refelt-design",
-  "version": "1.0.22",
-  "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
-  "author": "Choosewise Team",
-  "license": "MIT",
+  "version": "1.0.26",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "svelte": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
-  "sideEffects": false,
+  "description": "Refelt Design System - Svelte UI Components with component--modifier pattern",
+  "license": "MIT",
+  "scripts": {
+    "package": "svelte-package",
+    "prepublishOnly": "npm run package"
+  },
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
-      "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./uikit": {
-      "types": "./dist/types/uikit/index.d.ts",
-      "svelte": "./dist/uikit/index.js",
-      "import": "./dist/uikit/index.js",
-      "default": "./dist/uikit/index.js"
-    },
-    "./uikit/*": {
-      "svelte": "./dist/uikit/*",
-      "import": "./dist/uikit/*",
-      "default": "./dist/uikit/*"
+      "types": "./dist/lib/uikit/index.d.ts",
+      "svelte": "./dist/lib/uikit/index.js",
+      "default": "./dist/lib/uikit/index.js"
     },
     "./rich": {
-      "types": "./dist/types/rich/index.d.ts",
-      "svelte": "./dist/rich/index.js",
-      "import": "./dist/rich/index.js",
-      "default": "./dist/rich/index.js"
+      "types": "./dist/lib/rich/index.d.ts",
+      "svelte": "./dist/lib/rich/index.js",
+      "default": "./dist/lib/rich/index.js"
     },
-    "./rich/*": {
-      "svelte": "./dist/rich/*",
-      "import": "./dist/rich/*",
-      "default": "./dist/rich/*"
-    },
-    "./package.json": "./package.json"
+    "./styles.css": "./dist/lib/uikit/styles.css"
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
-  "scripts": {
-    "dev": "vite",
-    "build": "svelte-package && vite build",
-    "preview": "vite preview",
-    "package": "svelte-package"
-  },
-  "devDependencies": {
-    "@sveltejs/package": "^2.5.4",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "svelte": "^4.2.0",
-    "terser": "^5.44.0",
-    "typescript": "^5.9.3",
-    "vite": "^5.0.0",
-    "vite-plugin-html": "^3.2.2"
-  },
-  "dependencies": {
-    "lucide-svelte": "^0.545.0",
-    "svelte-spa-router": "^4.0.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/refelt-project/refelt-design"
-  },
-  "homepage": "https://github.com/refelt-project/refelt-design",
-  "keywords": [
-    "svelte",
-    "ui",
-    "components",
-    "design-system",
-    "native-ui",
-    "choosewise"
-  ],
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "peerDependencies": {
     "svelte": "^4.0.0 || ^5.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "svelte": "^5.0.0",
+    "vite": "^5.0.0"
   }
 }

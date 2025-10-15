@@ -3,9 +3,9 @@
 /** @typedef {typeof __propDef.slots}  SwitchSlots */
 export default class Switch extends SvelteComponent<{
     [x: string]: any;
+    id?: string | undefined;
     disabled?: boolean | undefined;
     label?: string | undefined;
-    id?: string | undefined;
     checked?: boolean | undefined;
 }, {
     change: Event;
@@ -20,9 +20,9 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
+        id?: string | undefined;
         disabled?: boolean | undefined;
         label?: string | undefined;
-        id?: string | undefined;
         checked?: boolean | undefined;
     };
     events: {

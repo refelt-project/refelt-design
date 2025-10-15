@@ -5,9 +5,9 @@ export default class ColorPicker extends SvelteComponent<{
     [x: string]: any;
     group?: string | undefined;
     name?: string | undefined;
+    disabled?: boolean | undefined;
     options?: string[] | undefined;
     idPrefix?: string | undefined;
-    disabled?: boolean | undefined;
 }, {
     [evt: string]: CustomEvent<any>;
 }, {}> {
@@ -21,9 +21,9 @@ declare const __propDef: {
         [x: string]: any;
         group?: string | undefined;
         name?: string | undefined;
+        disabled?: boolean | undefined;
         options?: string[] | undefined;
         idPrefix?: string | undefined;
-        disabled?: boolean | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

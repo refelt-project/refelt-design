@@ -4,11 +4,11 @@
 export default class Radio extends SvelteComponent<{
     [x: string]: any;
     group?: any;
+    value?: any;
     name?: string | undefined;
+    id?: string | undefined;
     disabled?: boolean | undefined;
     label?: string | undefined;
-    value?: any;
-    id?: string | undefined;
 }, {
     change: Event;
 } & {
@@ -23,11 +23,11 @@ declare const __propDef: {
     props: {
         [x: string]: any;
         group?: any;
+        value?: any;
         name?: string | undefined;
+        id?: string | undefined;
         disabled?: boolean | undefined;
         label?: string | undefined;
-        value?: any;
-        id?: string | undefined;
     };
     events: {
         change: Event;
