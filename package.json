@@ -1,6 +1,6 @@
 {
   "name": "refelt-design",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Minimal, Fast, LLM-Friendly Svelte UI Kit",
   "author": "Choosewise Team",
   "license": "MIT",
@@ -8,17 +8,17 @@
   "svelte": "./dist/index.js",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "svelte": "./dist/index.js",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     },
     "./uikit": {
-      "types": "./dist/types/uikit/index.d.ts",
+      "types": "./dist/uikit/index.d.ts",
       "svelte": "./dist/uikit/index.js",
       "import": "./dist/uikit/index.js",
       "default": "./dist/uikit/index.js"
@@ -29,7 +29,7 @@
       "default": "./dist/uikit/*"
     },
     "./rich": {
-      "types": "./dist/types/rich/index.d.ts",
+      "types": "./dist/rich/index.d.ts",
       "svelte": "./dist/rich/index.js",
       "import": "./dist/rich/index.js",
       "default": "./dist/rich/index.js"
@@ -66,13 +66,13 @@
   "scripts": {
     "dev": "vite",
     "package": "svelte-package",
-    "postpackage": "node -e \"(async()=>{const fs=await import('node:fs/promises');try{await fs.mkdir('dist/uikit',{recursive:true});await fs.copyFile('src/lib/uikit/styles.css','dist/uikit/styles.css');}catch{}})()\"",
+    "postpackage": "node scripts/gen-dts.mjs",
     "build": "yarn package && vite build",
     "preview": "vite preview"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/refelt-project/refelt-design"
+    "url": "git+https://github.com/refelt-project/refelt-design.git"
   },
   "homepage": "https://github.com/refelt-project/refelt-design",
   "keywords": [
