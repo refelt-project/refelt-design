@@ -3,13 +3,13 @@
 /** @typedef {typeof __propDef.slots}  RadioCardSlots */
 export default class RadioCard extends SvelteComponent<{
     [x: string]: any;
-    group?: any;
-    value?: any;
-    name?: string | undefined;
-    title?: string | undefined;
-    description?: string | undefined;
-    id?: string | undefined;
     disabled?: boolean | undefined;
+    title?: string | undefined;
+    value?: any;
+    id?: string | undefined;
+    group?: any;
+    name?: string | undefined;
+    description?: string | undefined;
 }, {
     [evt: string]: CustomEvent<any>;
 }, {
@@ -23,13 +23,13 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        group?: any;
-        value?: any;
-        name?: string | undefined;
-        title?: string | undefined;
-        description?: string | undefined;
-        id?: string | undefined;
         disabled?: boolean | undefined;
+        title?: string | undefined;
+        value?: any;
+        id?: string | undefined;
+        group?: any;
+        name?: string | undefined;
+        description?: string | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

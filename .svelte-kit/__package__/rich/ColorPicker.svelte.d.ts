@@ -3,9 +3,9 @@
 /** @typedef {typeof __propDef.slots}  ColorPickerSlots */
 export default class ColorPicker extends SvelteComponent<{
     [x: string]: any;
+    disabled?: boolean | undefined;
     group?: string | undefined;
     name?: string | undefined;
-    disabled?: boolean | undefined;
     options?: string[] | undefined;
     idPrefix?: string | undefined;
 }, {
@@ -19,9 +19,9 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
+        disabled?: boolean | undefined;
         group?: string | undefined;
         name?: string | undefined;
-        disabled?: boolean | undefined;
         options?: string[] | undefined;
         idPrefix?: string | undefined;
     };

@@ -3,8 +3,8 @@
 /** @typedef {typeof __propDef.slots}  CheckboxSlots */
 export default class Checkbox extends SvelteComponent<{
     [x: string]: any;
-    id?: string | undefined;
     disabled?: boolean | undefined;
+    id?: string | undefined;
     label?: string | undefined;
     checked?: boolean | undefined;
 }, {
@@ -20,8 +20,8 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        id?: string | undefined;
         disabled?: boolean | undefined;
+        id?: string | undefined;
         label?: string | undefined;
         checked?: boolean | undefined;
     };

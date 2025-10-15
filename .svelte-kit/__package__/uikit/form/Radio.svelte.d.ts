@@ -3,12 +3,12 @@
 /** @typedef {typeof __propDef.slots}  RadioSlots */
 export default class Radio extends SvelteComponent<{
     [x: string]: any;
-    group?: any;
-    value?: any;
-    name?: string | undefined;
-    id?: string | undefined;
     disabled?: boolean | undefined;
+    value?: any;
+    id?: string | undefined;
     label?: string | undefined;
+    group?: any;
+    name?: string | undefined;
 }, {
     change: Event;
 } & {
@@ -22,12 +22,12 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        group?: any;
-        value?: any;
-        name?: string | undefined;
-        id?: string | undefined;
         disabled?: boolean | undefined;
+        value?: any;
+        id?: string | undefined;
         label?: string | undefined;
+        group?: any;
+        name?: string | undefined;
     };
     events: {
         change: Event;

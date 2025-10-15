@@ -3,12 +3,12 @@
 /** @typedef {typeof __propDef.slots}  InputSlots */
 export default class Input extends SvelteComponent<{
     [x: string]: any;
-    value?: string | undefined;
-    id?: string | undefined;
-    disabled?: boolean | undefined;
-    label?: string | undefined;
     type?: string | undefined;
+    disabled?: boolean | undefined;
+    value?: string | undefined;
     placeholder?: string | undefined;
+    id?: string | undefined;
+    label?: string | undefined;
     min?: any;
     max?: any;
     step?: number | undefined;
@@ -23,12 +23,12 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        value?: string | undefined;
-        id?: string | undefined;
-        disabled?: boolean | undefined;
-        label?: string | undefined;
         type?: string | undefined;
+        disabled?: boolean | undefined;
+        value?: string | undefined;
         placeholder?: string | undefined;
+        id?: string | undefined;
+        label?: string | undefined;
         min?: any;
         max?: any;
         step?: number | undefined;

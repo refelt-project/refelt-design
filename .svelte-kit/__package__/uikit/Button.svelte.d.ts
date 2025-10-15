@@ -3,9 +3,9 @@
 /** @typedef {typeof __propDef.slots}  ButtonSlots */
 export default class Button extends SvelteComponent<{
     [x: string]: any;
-    disabled?: boolean | undefined;
     variant?: string | undefined;
     type?: string | undefined;
+    disabled?: boolean | undefined;
 }, {
     click: PointerEvent;
 } & {
@@ -21,9 +21,9 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         [x: string]: any;
-        disabled?: boolean | undefined;
         variant?: string | undefined;
         type?: string | undefined;
+        disabled?: boolean | undefined;
     };
     events: {
         click: PointerEvent;
