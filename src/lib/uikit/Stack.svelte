@@ -8,6 +8,7 @@
    * - Direction: stack--vertical (default) | stack--horizontal
    * - Gap: stack--gap-sm | stack--gap-md | stack--gap-lg | stack--gap-xl | stack--gap-xxl
    * - Align: stack--align-start | stack--align-center | stack--align-end
+   * - Justify: stack--justify-start | stack--justify-center | stack--justify-end | stack--justify-between
    * 
    * USAGE:
    * <Stack class="stack--gap-lg">...</Stack>
@@ -76,5 +77,24 @@
 
   .stack.stack--align-end {
     align-items: flex-end;
+  }
+
+  /* ============================================
+     JUSTIFY MODIFIERS
+     ============================================ */
+  .stack.stack--justify-start {
+    justify-content: flex-start;
+  }
+
+  .stack.stack--justify-center {
+    justify-content: center;
+  }
+
+  .stack.stack--justify-end {
+    justify-content: flex-end;
+  }
+
+  .stack.stack--justify-between {
+    justify-content: space-between;
   }
 </style>
