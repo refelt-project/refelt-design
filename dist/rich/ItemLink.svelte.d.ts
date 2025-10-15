@@ -1,42 +1,56 @@
-/** @typedef {typeof __propDef.props}  ItemLinkProps */
-/** @typedef {typeof __propDef.events}  ItemLinkEvents */
-/** @typedef {typeof __propDef.slots}  ItemLinkSlots */
-export default class ItemLink extends SvelteComponent<{
+export default ItemLink;
+type ItemLink = SvelteComponent<$$__sveltets_2_PropsWithChildren<{
     [x: string]: any;
     href?: string | undefined;
     target?: any;
     rel?: any;
     muted?: boolean | undefined;
 }, {
+    leading: {};
+    default: {};
+    trailing: {};
+}>, {
     [evt: string]: CustomEvent<any>;
 }, {
     leading: {};
     default: {};
     trailing: {};
-}> {
-}
-export type ItemLinkProps = typeof __propDef.props;
-export type ItemLinkEvents = typeof __propDef.events;
-export type ItemLinkSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        [x: string]: any;
-        href?: string | undefined;
-        target?: any;
-        rel?: any;
-        muted?: boolean | undefined;
-    };
-    events: {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {
-        leading: {};
-        default: {};
-        trailing: {};
-    };
-    exports?: undefined;
-    bindings?: undefined;
+}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const ItemLink: $$__sveltets_2_IsomorphicComponent<$$__sveltets_2_PropsWithChildren<{
+    [x: string]: any;
+    href?: string | undefined;
+    target?: any;
+    rel?: any;
+    muted?: boolean | undefined;
+}, {
+    leading: {};
+    default: {};
+    trailing: {};
+}>, {
+    [evt: string]: CustomEvent<any>;
+}, {
+    leading: {};
+    default: {};
+    trailing: {};
+}, {}, string>;
+type $$__sveltets_2_PropsWithChildren<Props, Slots> = Props & (Slots extends {
+    default: any;
+} ? Props extends Record<string, never> ? any : {
+    children?: any;
+} : {});
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}
 //# sourceMappingURL=ItemLink.svelte.d.ts.map

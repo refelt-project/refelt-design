@@ -1,34 +1,46 @@
-/** @typedef {typeof __propDef.props}  CardHeaderProps */
-/** @typedef {typeof __propDef.events}  CardHeaderEvents */
-/** @typedef {typeof __propDef.slots}  CardHeaderSlots */
-export default class CardHeader extends SvelteComponent<{
+export default CardHeader;
+type CardHeader = SvelteComponent<$$__sveltets_2_PropsWithChildren<{
     class?: string | undefined;
     title?: string | undefined;
 }, {
+    default: {};
+    action: {};
+}>, {
     [evt: string]: CustomEvent<any>;
 }, {
     default: {};
     action: {};
-}> {
-}
-export type CardHeaderProps = typeof __propDef.props;
-export type CardHeaderEvents = typeof __propDef.events;
-export type CardHeaderSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        class?: string | undefined;
-        title?: string | undefined;
-    };
-    events: {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {
-        default: {};
-        action: {};
-    };
-    exports?: undefined;
-    bindings?: undefined;
+}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const CardHeader: $$__sveltets_2_IsomorphicComponent<$$__sveltets_2_PropsWithChildren<{
+    class?: string | undefined;
+    title?: string | undefined;
+}, {
+    default: {};
+    action: {};
+}>, {
+    [evt: string]: CustomEvent<any>;
+}, {
+    default: {};
+    action: {};
+}, {}, string>;
+type $$__sveltets_2_PropsWithChildren<Props, Slots> = Props & (Slots extends {
+    default: any;
+} ? Props extends Record<string, never> ? any : {
+    children?: any;
+} : {});
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}
 //# sourceMappingURL=CardHeader.svelte.d.ts.map

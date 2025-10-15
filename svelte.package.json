@@ -1,0 +1,5 @@
+{
+    "input": "src/lib",
+    "output": "dist",
+    "emitTypes": true
+  }

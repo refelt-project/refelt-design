@@ -1,32 +1,46 @@
 {
   "name": "refelt-design",
-  "version": "1.0.34",
+  "version": "1.0.36",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "prepublishOnly": "npm run build"
+    "package": "svelte-package --input src/lib",
+    "prepublishOnly": "npm run package"
   },
   "exports": {
-    ".": "./src/lib/index.js",
-    "./uikit": "./src/lib/uikit/index.js",
-    "./rich": "./src/lib/rich/index.js",
-    "./styles.css": "./src/lib/uikit/styles.css"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./uikit": {
+      "types": "./dist/lib/uikit/index.d.ts",
+      "svelte": "./dist/lib/uikit/index.js"
+    },
+    "./rich": {
+      "types": "./dist/lib/rich/index.d.ts",
+      "svelte": "./dist/lib/rich/index.js"
+    },
+    "./styles.css": "./dist/lib/uikit/styles.css"
   },
-  "svelte": "./src/lib/index.js",
   "files": [
-    "src/lib"
+    "dist"
   ],
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "peerDependencies": {
-    "svelte": "^5.0.0"
+    "svelte": "^4.0.0 || ^5.0.0"
   },
   "dependencies": {
     "lucide-svelte": "^0.263.0",
     "svelte-spa-router": "^4.0.1"
   },
   "devDependencies": {
+    "@sveltejs/package": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "svelte": "^5.0.0",
+    "svelte2tsx": "^0.7.0",
+    "typescript": "^5.9.3",
     "vite": "^5.0.0"
   }
 }

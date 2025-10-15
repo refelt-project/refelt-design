@@ -1,7 +1,5 @@
-/** @typedef {typeof __propDef.props}  RadioProps */
-/** @typedef {typeof __propDef.events}  RadioEvents */
-/** @typedef {typeof __propDef.slots}  RadioSlots */
-export default class Radio extends SvelteComponent<{
+export default Radio;
+type Radio = SvelteComponent<{
     [x: string]: any;
     disabled?: boolean | undefined;
     value?: any;
@@ -13,30 +11,33 @@ export default class Radio extends SvelteComponent<{
     change: Event;
 } & {
     [evt: string]: CustomEvent<any>;
-}, {}> {
-}
-export type RadioProps = typeof __propDef.props;
-export type RadioEvents = typeof __propDef.events;
-export type RadioSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        [x: string]: any;
-        disabled?: boolean | undefined;
-        value?: any;
-        id?: string | undefined;
-        label?: string | undefined;
-        group?: any;
-        name?: string | undefined;
-    };
-    events: {
-        change: Event;
-    } & {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {};
-    exports?: undefined;
-    bindings?: undefined;
+}, {}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const Radio: $$__sveltets_2_IsomorphicComponent<{
+    [x: string]: any;
+    disabled?: boolean | undefined;
+    value?: any;
+    id?: string | undefined;
+    label?: string | undefined;
+    group?: any;
+    name?: string | undefined;
+}, {
+    change: Event;
+} & {
+    [evt: string]: CustomEvent<any>;
+}, {}, {}, string>;
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}
 //# sourceMappingURL=Radio.svelte.d.ts.map

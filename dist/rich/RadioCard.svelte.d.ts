@@ -1,7 +1,5 @@
-/** @typedef {typeof __propDef.props}  RadioCardProps */
-/** @typedef {typeof __propDef.events}  RadioCardEvents */
-/** @typedef {typeof __propDef.slots}  RadioCardSlots */
-export default class RadioCard extends SvelteComponent<{
+export default RadioCard;
+type RadioCard = SvelteComponent<$$__sveltets_2_PropsWithChildren<{
     [x: string]: any;
     disabled?: boolean | undefined;
     title?: string | undefined;
@@ -11,34 +9,46 @@ export default class RadioCard extends SvelteComponent<{
     name?: string | undefined;
     description?: string | undefined;
 }, {
+    default: {};
+}>, {
     [evt: string]: CustomEvent<any>;
 }, {
     default: {};
-}> {
-}
-export type RadioCardProps = typeof __propDef.props;
-export type RadioCardEvents = typeof __propDef.events;
-export type RadioCardSlots = typeof __propDef.slots;
-import { SvelteComponent } from "svelte";
-declare const __propDef: {
-    props: {
-        [x: string]: any;
-        disabled?: boolean | undefined;
-        title?: string | undefined;
-        value?: any;
-        id?: string | undefined;
-        group?: any;
-        name?: string | undefined;
-        description?: string | undefined;
-    };
-    events: {
-        [evt: string]: CustomEvent<any>;
-    };
-    slots: {
-        default: {};
-    };
-    exports?: undefined;
-    bindings?: undefined;
+}> & {
+    $$bindings?: string | undefined;
 };
-export {};
+declare const RadioCard: $$__sveltets_2_IsomorphicComponent<$$__sveltets_2_PropsWithChildren<{
+    [x: string]: any;
+    disabled?: boolean | undefined;
+    title?: string | undefined;
+    value?: any;
+    id?: string | undefined;
+    group?: any;
+    name?: string | undefined;
+    description?: string | undefined;
+}, {
+    default: {};
+}>, {
+    [evt: string]: CustomEvent<any>;
+}, {
+    default: {};
+}, {}, string>;
+type $$__sveltets_2_PropsWithChildren<Props, Slots> = Props & (Slots extends {
+    default: any;
+} ? Props extends Record<string, never> ? any : {
+    children?: any;
+} : {});
+interface $$__sveltets_2_IsomorphicComponent<Props extends Record<string, any> = any, Events extends Record<string, any> = any, Slots extends Record<string, any> = any, Exports = {}, Bindings = string> {
+    new (options: import("svelte").ComponentConstructorOptions<Props>): import("svelte").SvelteComponent<Props, Events, Slots> & {
+        $$bindings?: Bindings;
+    } & Exports;
+    (internal: unknown, props: Props & {
+        $$events?: Events;
+        $$slots?: Slots;
+    }): Exports & {
+        $set?: any;
+        $on?: any;
+    };
+    z_$$bindings?: Bindings;
+}
 //# sourceMappingURL=RadioCard.svelte.d.ts.map
