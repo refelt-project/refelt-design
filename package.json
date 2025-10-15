@@ -1,6 +1,6 @@
 {
   "name": "refelt-design",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "type": "module",
   "description": "Refelt Design System - Svelte UI Components with component--modifier pattern",
   "license": "MIT",
