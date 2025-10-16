@@ -122,7 +122,7 @@
       <!-- Payment Method Section -->
       <Stack class="stack--gap-lg">
         <Stack class="stack--gap-sm">
-          <Text class="text--lg">Payment Method</Text>
+          <Text class="text--lg">Example Payment Method</Text>
           <Text class="text--sm text--muted">All transactions are secure and encrypted</Text>
         </Stack>
         

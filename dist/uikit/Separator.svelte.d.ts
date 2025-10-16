@@ -2,6 +2,7 @@ export default Separator;
 type Separator = SvelteComponent<{
     [x: string]: any;
     orientation?: string | undefined;
+    decorative?: boolean | undefined;
 }, {
     [evt: string]: CustomEvent<any>;
 }, {}> & {
@@ -10,6 +11,7 @@ type Separator = SvelteComponent<{
 declare const Separator: $$__sveltets_2_IsomorphicComponent<{
     [x: string]: any;
     orientation?: string | undefined;
+    decorative?: boolean | undefined;
 }, {
     [evt: string]: CustomEvent<any>;
 }, {}, {}, string>;

@@ -1,32 +1,37 @@
 <script>
-  import { link, location } from 'svelte-spa-router';
-  import {ThemeToggle} from '@/lib/rich';
-  import Logo from './Logo.svelte';
-  
+  import { link, location } from "svelte-spa-router";
+  import { ThemeToggle } from "@/lib/rich";
+  import Logo from "./Logo.svelte";
+
   $: currentPath = $location;
 </script>
 
 <nav class="navbar">
   <div class="nav-content">
     <Logo size="medium" />
-    
+
     <div class="nav-links">
-      <a 
-        href="/" 
-        use:link 
-        class:active={currentPath === '/'}
-      >
-        Home
+      <a href="/" use:link class:active={currentPath === "/"}> Home </a>
+      <a href="/overview" use:link class:active={currentPath === "/overview"}>
+        Overview
       </a>
-      <a 
-        href="/get-started" 
+      <a
+        href="/showcase/typography"
         use:link
-        class:active={currentPath === '/get-started'}
+        class:active={currentPath === "/showcase/typography"}
+      >
+        Showcase
+      </a>
+
+      <a
+        href="/get-started"
+        use:link
+        class:active={currentPath === "/get-started"}
       >
         Get Started
       </a>
     </div>
-    
+
     <div class="nav-right">
       <ThemeToggle />
     </div>
@@ -41,7 +46,7 @@
     top: 0;
     z-index: 100;
   }
-  
+
   .nav-content {
     max-width: 1440px;
     margin: 0 auto;
@@ -50,7 +55,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .nav-links {
     display: flex;
     gap: 32px;
@@ -58,7 +63,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  
+
   .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
@@ -67,17 +72,17 @@
     transition: color 0.2s;
     position: relative;
   }
-  
+
   .nav-links a:hover {
     color: var(--text);
   }
-  
+
   .nav-links a.active {
     color: var(--text);
   }
-  
+
   .nav-links a.active::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -17px;
     left: 0;
@@ -85,19 +90,19 @@
     height: 2px;
     background: var(--accent);
   }
-  
+
   .nav-right {
     display: flex;
     gap: 12px;
     align-items: center;
   }
-  
+
   @media (max-width: 768px) {
     .nav-links {
       position: static;
       transform: none;
     }
-    
+
     .nav-content {
       flex-wrap: wrap;
       gap: 16px;
