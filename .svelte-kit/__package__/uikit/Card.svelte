@@ -6,7 +6,7 @@
    * - variant: "default" | "elevated"
    * 
    * MODIFIERS (via class prop):
-   * - Border: card--border-dashed
+   * - Border: card--border-dashed | card--border-only
    * - Padding: card--p-sm | card--p-lg
    * - Background: card--transparent | card--glass
    * 
@@ -18,7 +18,7 @@
    * USAGE:
    * <Card>Content</Card>
    * <Card variant="elevated" class="card--p-lg">Content</Card>
-   * <Card class="card--border-dashed card--transparent">Content</Card>
+   * <Card class="card--border-only">Only border, no background</Card>
    */
   
   export let variant = "default";
@@ -92,6 +92,11 @@
      ============================================ */
   .card.card--border-dashed {
     border-style: dashed;
+  }
+
+  .card.card--border-only {
+    background: transparent;
+    /* Border remains (default 1px solid var(--border)) */
   }
 
   /* ============================================

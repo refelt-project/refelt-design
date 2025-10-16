@@ -1,271 +1,162 @@
-# 🔒 Refelt UI - Secured Design System
+# Refelt UI Kit - LLM Reference
 
-## ✅ Security Features
+## Pattern: `component--modifier`
+Semantic props (behavior) + modifier classes (styling). NO inline styles.
 
-### 1. **Type Safety**
-Wszystkie komponenty używają JSDoc type annotations dla IntelliSense:
+## Components
 
+### Text
 ```svelte
-<Button variant="solid" size="md" />
-<!-- ✅ Valid -->
-
-<Button variant="whatever" />
-<!-- ❌ Invalid - console error + fallback to default -->
+<Text as="p|span|h1-h6" class="text--xs|sm|base|lg|xl|xxl text--muted|subtle|bold|error">
 ```
 
-### 2. **Validation Guards**
-Każdy komponent ma runtime validation:
-
-```javascript
-const ALLOWED_VARIANTS = ["solid", "outline", "ghost"];
-
-if (!ALLOWED_VARIANTS.includes(variant)) {
-  console.error(`Invalid variant: "${variant}"`);
-  variant = "solid"; // safe fallback
-}
-```
-
-### 3. **No Inline Styles**
-Komponenty **NIE** akceptują `style` prop:
-
+### Button
 ```svelte
-<!-- ❌ NIE ZADZIAŁA -->
-<Button style="background: red;">Bad</Button>
-
-<!-- ✅ ZADZIAŁA -->
-<Button variant="solid">Good</Button>
+<Button variant="default|secondary|accent|destructive|outline|ghost|link" 
+        type="button|submit|reset" disabled 
+        class="btn--sm|md|lg btn--rounded" on:click>
 ```
 
-### 4. **CSS Variables Only**
-Wszystkie wartości spacing/colors z CSS vars:
-
-```css
-:root {
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  /* ... */
-}
-```
-
-Zmiana `--grid: 8px` → `--grid: 12px` = cały system się dostosuje.
-
----
-
-## 📦 Components API
-
-### `<Stack>`
+### Badge
 ```svelte
-<Stack 
-  direction="vertical"  {/* "vertical" | "horizontal" */}
-  gap="md"              {/* "sm" | "md" | "lg" | "xl" | "xxl" */}
->
-  <Card>...</Card>
-</Stack>
+<Badge variant="success|warning|error|info|pending" class="badge--sm|md">
 ```
 
-### `<Grid>`
+### Card
 ```svelte
-<Grid 
-  columns="auto-fit"    {/* "auto-fit" | "auto-fill" | number */}
-  rows="auto"           {/* "auto" | number */}
-  minColumnWidth="340px"
-  gap="lg"              {/* "sm" | "md" | "lg" | "xl" | "xxl" */}
->
-  <Card>...</Card>
-</Grid>
-```
-
-### `<Button>`
-```svelte
-<Button 
-  variant="solid"       {/* "solid" | "outline" | "ghost" */}
-  size="md"             {/* "sm" | "md" | "lg" */}
-  disabled={false}
-  on:click={handleClick}
->
-  Click me
-</Button>
-```
-
-### `<Card>`
-```svelte
-<Card 
-  variant="default"     {/* "default" | "transparent" | "glass" */}
-  border="subtle"       {/* "none" | "subtle" | "strong" */}
-  padding="md"          {/* "sm" | "md" | "lg" */}
->
-  <div slot="header">Header</div>
-  Content
-  <div slot="footer">Footer</div>
+<Card variant="default|elevated" class="card--border-dashed|border-only card--p-sm|lg card--transparent|glass">
+  <div slot="header">...</div>
+  content
+  <div slot="footer">...</div>
 </Card>
 ```
 
-### `<Badge>`
+### CardHeader / CardFooter
 ```svelte
-<Badge 
-  variant="info"        {/* "success" | "warning" | "error" | "info" | "pending" */}
-  size="md"             {/* "sm" | "md" */}
->
-  Status
-</Badge>
+<CardHeader title="...">
+  <Text>...</Text>
+  <div slot="action"><Button/></div>
+</CardHeader>
+<CardFooter>buttons</CardFooter>
 ```
 
-### `<Text>`
+### Stack
 ```svelte
-<Text 
-  as="p"                {/* "h1" | "h2" | "h3" | "p" */}
-  size="md"             {/* "xs" | "sm" | "md" | "lg" | "xl" | "xxl" */}
->
-  Content
-</Text>
+<Stack class="stack--vertical|horizontal stack--gap-sm|md|lg|xl|xxl stack--align-start|center|end">
 ```
 
-### `<Input>`
+### Grid
 ```svelte
-<Input 
-  type="text"           {/* "text" | "email" | "password" */}
-  label="Email"
-  id="email-input"
-  placeholder="you@example.com"
-  disabled={false}
-  bind:value={email}
-  on:input={handleInput}
-  on:focus={handleFocus}
-  on:blur={handleBlur}
-/>
+<Grid columns="auto-fit|auto-fill|number" rows="auto|number" preset="sm|md|lg"
+      class="grid--gap-sm|md|lg|xl|xxl grid--lg-1|2|3 grid--md-1|2|3 grid--sm-1|2">
+```
+Presets: sm=240px, md=280px, lg=320px
+
+### Separator
+```svelte
+<Separator orientation="horizontal|vertical" decorative 
+           class="separator--dashed|dotted|space separator--spacing-sm|md|lg|xl|xxl|none">
 ```
 
-### `<Container>`
+### Container
 ```svelte
+<Container>content</Container>
+```
+
+### Input
+```svelte
+<Input type="text|email|password|number" label="..." placeholder="..." 
+       bind:value disabled min max step id
+       class="input--sm|md|lg" on:input on:focus on:blur>
+```
+Number type has +/- buttons & arrow key support.
+
+### Textarea
+```svelte
+<Textarea label="..." placeholder="..." rows={4} bind:value disabled id
+          class="textarea--sm|md|lg textarea--resize-none|vertical|horizontal|both"
+          on:input on:focus on:blur>
+```
+
+### Checkbox
+```svelte
+<Checkbox label="..." bind:checked disabled id class="checkbox--sm|md|lg" on:change>
+```
+
+### Radio
+```svelte
+<Radio bind:group value name label disabled id class="radio--sm|md|lg" on:change>
+```
+
+### Switch
+```svelte
+<Switch label="..." bind:checked disabled id class="switch--sm|md|lg" on:change>
+```
+
+### Label
+```svelte
+<Label for="..." required class="label--sm|md|lg label--muted|bold">
+```
+
+## Tokens
+```css
+/* Spacing (8px grid) */
+--space-sm: 8px, --space-md: 16px, --space-lg: 24px, --space-xl: 48px, --space-xxl: 64px
+
+/* Type */
+--font-size-xs: 12px, sm: 14px, base: 16px, lg: 18px, xl: 20px, xxl: 36px
+
+/* Radius */
+--radius-sm: 4px, md: 8px, lg: 10px, full: 999px
+
+/* Breakpoints */
+--breakpoint-sm: 640px, md: 768px, lg: 1024px
+
+/* Colors (OKLCH dark) */
+--bg, --bg-elevated, --bg-card, --border, --text, --text-muted
+--accent, --destructive, --primary, --secondary
+--status-success/warning/error/info (+ -bg variants)
+```
+
+## Theme Toggle
+```js
+document.documentElement.setAttribute('data-theme', 'light|dark');
+```
+
+## Import
+```js
+import { Text, Button, Badge, Card, CardHeader, CardFooter, 
+         Container, Stack, Grid, Separator,
+         Input, Textarea, Checkbox, Radio, Switch, Label } from '$lib/uikit';
+```
+
+## Patterns
+```svelte
+<!-- Form -->
+<Stack class="stack--gap-md">
+  <Label for="x" required>Name</Label>
+  <Input id="x" bind:value={name}/>
+  <Checkbox label="Accept" bind:checked/>
+  <Button variant="accent">Submit</Button>
+</Stack>
+
+<!-- Layout -->
 <Container>
-  <Stack>...</Stack>
+  <Stack class="stack--gap-lg">
+    <Card>
+      <CardHeader title="Title"/>
+      <Grid preset="md" class="grid--gap-md">
+        <Card class="card--p-sm">...</Card>
+      </Grid>
+      <CardFooter><Button/></CardFooter>
+    </Card>
+  </Stack>
 </Container>
 ```
 
----
-
-## 🎨 Theming
-
-### Zmienianie spacing scale:
-```css
-:root {
-  --grid: 12px;  /* zmień z 8px na 12px */
-}
-/* Wszystkie komponenty się dostosują automatycznie */
-```
-
-### Zmienianie kolorów:
-```css
-:root {
-  --accent: #6366f1;  /* zmień kolor akcji */
-  --accent-fg: #ffffff;
-}
-```
-
-### Dark/Light mode:
-```javascript
-// ThemeToggle.svelte już implementuje
-document.documentElement.setAttribute('data-theme', 'light');
-```
-
----
-
-## 🚫 Co NIE zadziała (by design)
-
-```svelte
-<!-- ❌ Inline styles - ZABLOKOWANE -->
-<Button style="padding: 100px;">Won't work</Button>
-
-<!-- ❌ Niepoprawne wartości - FALLBACK -->
-<Stack gap="huge">Falls back to "md"</Stack>
-
-<!-- ❌ Custom spacing - ZABLOKOWANE -->
-<Grid gap="999px">Falls back to "lg"</Grid>
-
-<!-- ❌ Złe variant - FALLBACK -->
-<Badge variant="custom">Falls back to "info"</Badge>
-```
-
----
-
-## ✅ Co ZADZIAŁA
-
-```svelte
-<!-- ✅ Poprawne API -->
-<Stack gap="xl">
-  <Button variant="solid" size="lg">Click</Button>
-</Stack>
-
-<!-- ✅ CSS classes (jeśli potrzebujesz custom) -->
-<Button class="custom-class">Styled via CSS</Button>
-
-<!-- ✅ Event forwarding -->
-<Input 
-  bind:value={email}
-  on:input={(e) => console.log(e.target.value)}
-/>
-```
-
----
-
-## 🔧 Customization
-
-Jeśli potrzebujesz custom styling:
-
-1. **Używaj CSS classes:**
-```svelte
-<Button class="my-custom-button">Click</Button>
-
-<style>
-  :global(.my-custom-button) {
-    /* custom styles */
-  }
-</style>
-```
-
-2. **Lub modyfikuj CSS variables:**
-```css
-:root {
-  --accent: #your-color;
-  --space-md: 20px;
-}
-```
-
----
-
-## 📝 Migration z starego Refelt
-
-### Przed:
-```svelte
-<Stack gap="16px">  <!-- inline value -->
-```
-
-### Po:
-```svelte
-<Stack gap="md">  <!-- token -->
-```
-
-### Mapping:
-- `8px` → `gap="sm"`
-- `16px` → `gap="md"`
-- `24px` → `gap="lg"`
-- `48px` → `gap="xl"`
-- `64px` → `gap="xxl"`
-
----
-
-## 🎯 Philosophy
-
-> **"Make it impossible to break, easy to use, and trivial to extend."**
-
-- ✅ Runtime validation guards
-- ✅ Type-safe props (JSDoc)
-- ✅ CSS variables only
-- ✅ No inline styles accepted
-- ✅ Fallbacks for invalid values
-- ✅ Console warnings in dev
-
----
-
-**Made with ❤️ for Refelt**
+## Rules
+✅ Use semantic props: `variant`, `disabled`, `bind:value`  
+✅ Use modifier classes: `btn--lg`, `text--muted`  
+✅ Combine: `<Button variant="accent" class="btn--lg">`  
+❌ NO inline styles: `style="..."`  
+❌ NO custom values: use tokens only
