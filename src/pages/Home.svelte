@@ -25,7 +25,9 @@
   <Stack class="stack--gap-xl">
     <Stack class="stack--gap-md">
       <Text as="h1" class="text--xxl">Refelt UI Kit Showcase</Text>
-      <Text class="text--base text--muted">Component--modifier pattern examples</Text>
+      <Text class="text--base text--muted"
+        >Component--modifier pattern examples</Text
+      >
     </Stack>
 
     <!-- Przypadek A: desktop 2 kolumny, mobile 1 -->
@@ -37,7 +39,9 @@
       <Stack class="stack--gap-lg">
         <Stack class="stack--gap-sm">
           <Text class="text--lg text--bold">Component Showcase</Text>
-          <Text class="text--sm text--muted">Advanced UI patterns from shadcn/ui</Text>
+          <Text class="text--sm text--muted"
+            >Advanced UI patterns from shadcn/ui</Text
+          >
         </Stack>
 
         <Separator />
@@ -45,7 +49,9 @@
         <ItemCard>
           <Stack class="stack--gap-sm">
             <Text class="text--base text--bold">Two-factor authentication</Text>
-            <Text class="text--sm text--muted">Verify via email or phone number.</Text>
+            <Text class="text--sm text--muted"
+              >Verify via email or phone number.</Text
+            >
           </Stack>
           <svelte:fragment slot="actions">
             <Button variant="accent" class="btn--sm">Enable</Button>
@@ -67,7 +73,9 @@
         <Stack class="stack--gap-md">
           <Stack class="stack--gap-sm">
             <Text class="text--base text--bold">Compute Environment</Text>
-            <Text class="text--sm text--muted">Select the compute environment for your cluster.</Text>
+            <Text class="text--sm text--muted"
+              >Select the compute environment for your cluster.</Text
+            >
           </Stack>
 
           <Stack class="stack--gap-sm">
@@ -125,8 +133,14 @@
         <Separator />
 
         <Stack class="stack--gap-sm">
-          <Switch bind:checked={tintingEnabled} id="tinting" label="Wallpaper Tinting" />
-          <Text class="text--sm text--muted">Allow the wallpaper to be tinted.</Text>
+          <Switch
+            bind:checked={tintingEnabled}
+            id="tinting"
+            label="Wallpaper Tinting"
+          />
+          <Text class="text--sm text--muted"
+            >Allow the wallpaper to be tinted.</Text
+          >
         </Stack>
       </Stack>
     </Grid>
